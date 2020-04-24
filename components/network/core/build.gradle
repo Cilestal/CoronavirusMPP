@@ -1,0 +1,21 @@
+ext {
+    commonDependencyGroup = {
+        implementation project(':common-core')
+        implementation project(":network-contract")
+
+        implementation "io.ktor:ktor-client-core:$ktor_version"
+        implementation "io.ktor:ktor-client-logging-native:$ktor_version"
+    }
+
+    iOSDependencyGroup = {
+        implementation "io.ktor:ktor-client-ios:$ktor_version"
+        implementation "io.ktor:ktor-client-logging-native:$ktor_version"
+    }
+
+    jvmTestDependencyGroup = {
+        implementation "io.ktor:ktor-client-mock-jvm:$ktor_version"
+        implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp.gradle")

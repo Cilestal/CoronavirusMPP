@@ -1,0 +1,29 @@
+ext {
+
+    kotlin = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    kotlin_reflect = dependencies.create("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
+
+    // android x
+    appcompat = dependencies.create("androidx.appcompat:appcompat:$appcompat_version")
+    coreCtx = dependencies.create("androidx.core:core-ktx:$core_ktx_version")
+    constraintlayout = dependencies.create("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+
+    // glide
+    glide = dependencies.create("com.github.bumptech.glide:glide:$glide_version")
+    glideCompiler = dependencies.create("com.github.bumptech.glide:compiler:$glide_version")
+
+    // kodein
+    kodeinJvm = dependencies.create("org.kodein.di:kodein-di-generic-jvm:$kodein_version")
+    kodeinAndroid = dependencies.create("org.kodein.di:kodein-di-framework-android-x:$kodein_version")
+
+    // kotlinx serialization
+    kotlinx_serialization = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$kotlin_serialization_version") {
+        apply plugin: 'kotlinx-serialization'
+    }
+
+    kotlinx_serialization_jvm = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlin_serialization_version") {
+        apply plugin: 'kotlinx-serialization'
+    }
+
+
+}

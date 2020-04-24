@@ -1,0 +1,81 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Generated files
+bin/
+gen/
+captures/
+out/
+
+# Built native files
+*.o
+*.so
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Gradle files
+.gradle/
+build/
+
+# Eclipse project files
+.classpath
+.project
+.metadata
+
+# Intellij IDEA (see https://intellij-support.jetbrains.com/entries/23393067)
+# and derivatives (including Android Studio)
+!.idea/
+.idea/*
+#.idea/workspace.xml - remove # and delete '.idea/' if it better suit your needs.
+!.idea/codeStyleSettings.xml
+!.idea/checkstyle-idea.xml
+.idea/misc.xml
+!.idea/inspectionProfiles
+!.idea/inspectionProfiles/*
+!.idea/codeStyles
+!.idea/dictionaries/project.xml
+/**/*.iml
+/.idea/workspace.xml
+/.idea/libraries
+/.idea/inspectionProfiles/profiles_settings.xml
+.externalNativeBuild
+
+/*/out
+.idea/caches/
+.idea/checkstyle-idea.xml
+.idea/codeStyles/
+.idea/encodings.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+
+# Xcode user specific files
+*.xcuserstate
+platform/ios/MainApp/Pods/
+platform/ios/MainApp/Podfile.lock
+*.xcbkptlist

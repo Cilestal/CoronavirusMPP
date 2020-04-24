@@ -1,0 +1,16 @@
+rootProject.name = 'MPPSample'
+enableFeaturePreview('GRADLE_METADATA')
+
+// common
+include 'common-contract', 'common-core', 'common-test'
+project(':common-contract').projectDir = file('common/contract')
+project(':common-core').projectDir = file('common/core')
+project(':common-test').projectDir = file('common/test')
+
+// network
+include 'network-contract', 'network-core'
+project(':network-contract').projectDir = file('components/network/contract')
+project(':network-core').projectDir = file('components/network/core')
+
+include 'android_app'
+project(':android_app').projectDir = file('platform/android/app')

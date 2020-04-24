@@ -1,0 +1,44 @@
+[
+  {
+    "Country": "South Africa",
+    "CountryCode": "",
+    "Province": "",
+    "City": "",
+    "CityCode": "",
+    "Lat": "0",
+    "Lon": "0",
+    "Confirmed": 1,
+    "Deaths": 0,
+    "Recovered": 0,
+    "Active": 0,
+    "Date": "2020-03-05T00:00:00Z"
+  },
+  {
+    "Country": "South Africa",
+    "CountryCode": "",
+    "Province": "",
+    "City": "",
+    "CityCode": "",
+    "Lat": "0",
+    "Lon": "0",
+    "Confirmed": 1,
+    "Deaths": 0,
+    "Recovered": 0,
+    "Active": 0,
+    "Date": "2020-03-06T00:00:00Z"
+  },
+  {
+    "Country": "South Africa",
+    "CountryCode": "",
+    "Province": "",
+    "City": "",
+    "CityCode": "",
+    "Lat": "0",
+    "Lon": "0",
+    "Confirmed": 1,
+    "Deaths": 0,
+    "Recovered": 0,
+    "Active": 0,
+    "Date": "2020-03-07T00:00:00Z"
+  }
+]

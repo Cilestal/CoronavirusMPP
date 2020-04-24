@@ -1,0 +1,15 @@
+ext {
+    commonDependencyGroup = {
+        implementation project(":common-contract")
+    }
+
+    iOSDependencyGroup = {
+
+    }
+
+    jvmDependencyGroup = {
+
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp.gradle")

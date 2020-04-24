@@ -1,0 +1,34 @@
+buildscript {
+    apply from: rootProject.file("${rootDir}/config/version.gradle")
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$android_gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+    }
+}
+
+allprojects {
+    apply from: rootProject.file("${rootDir}/config/deps.gradle")
+    apply from: rootProject.file("${rootDir}/config/version.gradle")
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+apply from: rootProject.file("${rootDir}/config/common_setup.gradle")
+
+android {
+    defaultConfig {
+        applicationId "org.michaellang.mviproject"
+    }
+
+    applicationVariants.all { variant ->
+        def apkPrefix = "mvi"
+        variant.outputs.all { output ->
+            outputFileName = "${apkPrefix}_${output.baseName}_v${variant.versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation kotlin
+
+    // androidx
+    implementation appcompat
+    implementation coreCtx
+    implementation constraintlayout
+
+    // glide
+    implementation glide
+    annotationProcessor glideCompiler
+
+    // kodein
+    implementation kodeinJvm
+    implementation kodeinAndroid
+
+    // test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+}

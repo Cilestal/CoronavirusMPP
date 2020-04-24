@@ -1,0 +1,22 @@
+[
+  {
+    "Country": "Barbados",
+    "Slug": "barbados",
+    "ISO2": "BB"
+  },
+  {
+    "Country": "Gibraltar",
+    "Slug": "gibraltar",
+    "ISO2": "GI"
+  },
+  {
+    "Country": "Lithuania",
+    "Slug": "lithuania",
+    "ISO2": "LT"
+  },
+  {
+    "Country": "Malaysia",
+    "Slug": "malaysia",
+    "ISO2": "MY"
+  }
+]
