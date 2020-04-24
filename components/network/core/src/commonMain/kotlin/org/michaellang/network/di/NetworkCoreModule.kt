@@ -17,8 +17,8 @@ class NetworkCoreModule(
         bind<NetworkService>() with singleton {
             NetworkServiceImpl(instance(TAG_HTTP_CLIENT), instance(TAG_BASE_URL))
         }
-        bind<ErrorConverter>() with singleton {
-            BaseErrorConverter(instance(TAG_PLATFORM_ERROR_CONVERTER))
+        bind<NetworkErrorConverter>() with singleton {
+            NetworkErrorConverterImpl(instance(TAG_PLATFORM_ERROR_CONVERTER))
         }
 
         // platform

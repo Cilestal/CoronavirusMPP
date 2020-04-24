@@ -2,6 +2,6 @@ package org.michaellang.network
 
 import org.michaellang.network.exception.NetworkException
 
-interface ErrorConverter {
+interface NetworkErrorConverter {
     suspend fun mapThrowable(throwable: Throwable): NetworkException
 }

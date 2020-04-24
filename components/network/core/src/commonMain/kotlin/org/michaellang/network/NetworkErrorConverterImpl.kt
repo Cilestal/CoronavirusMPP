@@ -5,9 +5,9 @@ import org.michaellang.network.Const.HTTP_FORBIDDEN
 import org.michaellang.network.Const.HTTP_UNAUTHORIZED
 import org.michaellang.network.exception.NetworkException
 
-class BaseErrorConverter(
+class NetworkErrorConverterImpl(
     private val systemErrorConverter: PlatformErrorConverter
-) : ErrorConverter {
+) : NetworkErrorConverter {
 
     override suspend fun mapThrowable(throwable: Throwable): NetworkException {
         return if (throwable is ResponseException) {

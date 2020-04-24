@@ -15,13 +15,13 @@ internal class BaseErrorConverterTest : BaseTest() {
     @Mock
     private lateinit var platformErrorConverter: PlatformErrorConverter
 
-    private lateinit var sut: BaseErrorConverter
+    private lateinit var sut: NetworkErrorConverterImpl
 
     @BeforeEach
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        sut = BaseErrorConverter(platformErrorConverter)
+        sut = NetworkErrorConverterImpl(platformErrorConverter)
     }
 
     @Test
