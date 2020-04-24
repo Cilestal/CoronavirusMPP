@@ -1,4 +1,3 @@
 package org.michaellang.common
 
-object Const {
-}
+object Const
