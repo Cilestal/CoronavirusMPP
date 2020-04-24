@@ -25,5 +25,8 @@ ext {
         apply plugin: 'kotlinx-serialization'
     }
 
+    kotlinx_serialization_native = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$kotlin_serialization_version") {
+        apply plugin: 'kotlinx-serialization'
+    }
 
 }

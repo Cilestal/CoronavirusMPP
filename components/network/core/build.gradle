@@ -18,4 +18,4 @@ ext {
     }
 }
 
-apply from: rootProject.file("${rootDir}/config/mpp.gradle")
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

@@ -1,0 +1,9 @@
+ext {
+    commonDependencyGroup = {
+        implementation project(':common-core')
+        implementation project(":database-contract")
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp.gradle")
+

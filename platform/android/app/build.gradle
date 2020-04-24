@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-apply from: rootProject.file("${rootDir}/config/common_setup.gradle")
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
 android {
     defaultConfig {

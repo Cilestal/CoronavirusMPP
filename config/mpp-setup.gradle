@@ -1,0 +1,31 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.android.library'
+
+apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
+apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
+
+def getClosureByNameOrEmpty(String name) {
+    if (this.properties.containsKey(name)) {
+        return this.properties.find { it.key == name }.value
+    } else {
+        return {}
+    }
+}
+
+kotlin {
+    targets {
+        fromPreset(presets.android, 'android')
+    }
+
+    sourceSets {
+        androidMain {
+            dependsOn commonMain
+            dependencies(getClosureByNameOrEmpty("androidDependencyGroup"))
+
+            dependencies {
+                implementation kotlinx_serialization_jvm
+            }
+        }
+    }
+}
+

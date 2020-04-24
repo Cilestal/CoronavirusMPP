@@ -1,11 +1,1 @@
-ext {
-    commonDependencyGroup = {
-        api kotlinx_serialization
-    }
-
-    jvmDependencyGroup = {
-        api kotlinx_serialization_jvm
-    }
-}
-
-apply from: rootProject.file("${rootDir}/config/mpp.gradle")
+apply from: rootProject.file("${rootDir}/config/common-setup.gradle")

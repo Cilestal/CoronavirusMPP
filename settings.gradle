@@ -12,5 +12,10 @@ include 'network-contract', 'network-core'
 project(':network-contract').projectDir = file('components/network/contract')
 project(':network-core').projectDir = file('components/network/core')
 
+// database
+include 'database-contract', 'database-core'
+project(':database-contract').projectDir = file('components/database/contract')
+project(':database-core').projectDir = file('components/database/core')
+
 include 'android_app'
 project(':android_app').projectDir = file('platform/android/app')

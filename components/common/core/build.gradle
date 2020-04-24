@@ -5,9 +5,13 @@ ext {
         api "org.kodein.di:kodein-di-erased:$kodein_version"
     }
 
+    androidDependencyGroup = {
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+    }
+
     iOSDependencyGroup = {
         api "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$kotlin_coroutines_version"
     }
 }
 
-apply from: rootProject.file("${rootDir}/config/mpp.gradle")
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

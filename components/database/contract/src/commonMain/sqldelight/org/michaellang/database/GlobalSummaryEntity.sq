@@ -1,0 +1,33 @@
+DROP TABLE IF EXISTS globalSummaryEntity;
+CREATE TABLE globalSummaryEntity (
+  id INTEGER NOT NULL,
+  newConfirmed INTEGER NOT NULL,
+  totalConfirmed INTEGER NOT NULL,
+  newDeaths INTEGER NOT NULL,
+  totalDeaths INTEGER NOT NULL,
+  newRecovered INTEGER NOT NULL,
+  totalRecovered INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  PRIMARY KEY (id, date)
+);
+
+insert:
+INSERT OR REPLACE INTO globalSummaryEntity(
+  id,
+  newConfirmed,
+  totalConfirmed,
+  newDeaths,
+  totalDeaths,
+  newRecovered,
+  totalRecovered,
+  date
+)
+VALUES ?;
+
+
+getSummary:
+SELECT * FROM globalSummaryEntity
+WHERE date = :date;
+
+clear:
+DELETE FROM globalSummaryEntity;

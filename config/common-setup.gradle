@@ -8,7 +8,6 @@ def getClosureByNameOrEmpty(String name) {
     }
 }
 
-
 kotlin {
     targets {
         jvm()
@@ -31,6 +30,10 @@ kotlin {
         iOSMain {
             dependsOn commonMain
             dependencies(getClosureByNameOrEmpty("iOSDependencyGroup"))
+
+            dependencies {
+                implementation kotlinx_serialization_native
+            }
         }
 
         jvmMain {
@@ -58,8 +61,9 @@ kotlin {
     }
 }
 
-
-task test()
 afterEvaluate {
+    if (!project.hasProperty('test')) {
+        task test()
+    }
     tasks.test.dependsOn jvmTest
 }
