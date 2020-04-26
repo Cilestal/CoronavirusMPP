@@ -7,13 +7,22 @@ apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 android {
     sourceSets {
         main {
-            manifest.srcFile 'src/androidMain/AndroidManifest.xml'
-            java.srcDirs = ['src/androidMain/kotlin']
-            res.srcDirs = ['src/androidMain/res']
+            setRoot('src/androidMain')
+        }
+        release {
+            setRoot('src/androidMainRelease')
+        }
+        debug {
+            setRoot('src/androidMainDebug')
         }
         test {
-            java.srcDirs = ['src/androidTest/kotlin']
-            res.srcDirs = ['src/androidTest/res']
+            setRoot('src/androidTest')
+        }
+        testRelease {
+            setRoot('src/androidTestRelease')
+        }
+        testDebug {
+            setRoot('src/androidTestDebug')
         }
     }
 }
@@ -32,7 +41,7 @@ kotlin {
         }
 
         androidTest {
-            dependsOn androidMain
+            dependsOn commonMain
             dependencies {
                 implementation test_common
                 implementation test_common_annotations

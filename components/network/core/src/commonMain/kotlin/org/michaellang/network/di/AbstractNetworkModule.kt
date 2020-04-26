@@ -5,12 +5,13 @@ import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
+import org.michaellang.common.di.KodeinModuleHolder
 import org.michaellang.network.*
 import org.michaellang.network.interceptor.TokenInterceptor
 
-abstract class AbstractNetworkModule {
+abstract class AbstractNetworkModule : KodeinModuleHolder {
 
-    val module = Kodein.Module("core_network_module") {
+    override val module = Kodein.Module("core_network_module") {
         import(InterceptorsModule().module)
 
         bind<NetworkService>() with singleton {

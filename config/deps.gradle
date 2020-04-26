@@ -14,6 +14,7 @@ ext {
     glideCompiler = dependencies.create("com.github.bumptech.glide:compiler:$glide_version")
 
     // kodein
+    kodein = dependencies.create("org.kodein.di:kodein-di-erased:$kodein_version")
     kodeinJvm = dependencies.create("org.kodein.di:kodein-di-generic-jvm:$kodein_version")
     kodeinAndroid = dependencies.create("org.kodein.di:kodein-di-framework-android-x:$kodein_version")
 
@@ -29,6 +30,10 @@ ext {
     kotlinx_serialization_native = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$kotlin_serialization_version") {
         apply plugin: 'kotlinx-serialization'
     }
+
+    // sqldelight
+    sqldelight_android_driver = dependencies.create("com.squareup.sqldelight:android-driver:$sqldelight_version")
+    sqldelight_native_driver = dependencies.create("com.squareup.sqldelight:native-driver:$sqldelight_version")
 
     // okhttp
     okhttp = dependencies.create("com.squareup.okhttp3:okhttp:$okhttp_version")
