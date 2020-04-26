@@ -12,8 +12,8 @@ kotlin {
     targets {
         jvm()
 
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")     \
-                                  ? presets.iosArm64 : presets.iosX64
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")      \
+                                   ? presets.iosArm64 : presets.iosX64
 
         fromPreset(iOSTarget, 'iOS')
     }
@@ -21,16 +21,22 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                implementation kotlin_stdlib_common
                 implementation kotlinx_serialization
             }
-            dependencies(getClosureByNameOrEmpty("commonDependencyGroup"))
         }
+
+//        commonTest {
+//            dependsOn commonMain
+//            dependencies {
+//                implementation test_common
+//                implementation test_common_annotations
+//                implementation mockk
+//            }
+//        }
 
         iOSMain {
             dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("iOSDependencyGroup"))
-
             dependencies {
                 implementation kotlinx_serialization_native
             }
@@ -38,8 +44,6 @@ kotlin {
 
         jvmMain {
             dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("jvmDependencyGroup"))
-
             dependencies {
                 implementation kotlinx_serialization_jvm
             }
@@ -47,16 +51,21 @@ kotlin {
 
         jvmTest {
             dependsOn jvmMain
-            dependencies(getClosureByNameOrEmpty("jvmTestDependencyGroup"))
+            dependencies {
+                implementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+                implementation "org.junit.jupiter:junit-jupiter-params:$junit_version"
+                implementation "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 
+                implementation mockk_jvm
+                implementation kotlin_reflect
+            }
             project.jvmTest {
                 useJUnitPlatform()
             }
+        }
 
-            dependencies {
-                api project(":common-test")
-                api kotlin_reflect
-            }
+        all {
+            it.dependencies(getClosureByNameOrEmpty("${it.name}_dependencies"))
         }
     }
 }

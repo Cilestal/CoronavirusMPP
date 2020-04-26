@@ -4,11 +4,17 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
-def getClosureByNameOrEmpty(String name) {
-    if (this.properties.containsKey(name)) {
-        return this.properties.find { it.key == name }.value
-    } else {
-        return {}
+android {
+    sourceSets {
+        main {
+            manifest.srcFile 'src/androidMain/AndroidManifest.xml'
+            java.srcDirs = ['src/androidMain/kotlin']
+            res.srcDirs = ['src/androidMain/res']
+        }
+        test {
+            java.srcDirs = ['src/androidTest/kotlin']
+            res.srcDirs = ['src/androidTest/res']
+        }
     }
 }
 
@@ -20,12 +26,20 @@ kotlin {
     sourceSets {
         androidMain {
             dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("androidDependencyGroup"))
-
             dependencies {
                 implementation kotlinx_serialization_jvm
             }
         }
+
+        androidTest {
+            dependsOn androidMain
+            dependencies {
+                implementation test_common
+                implementation test_common_annotations
+                implementation 'com.android.support.test:runner:1.0.2'
+
+                implementation mockk_jvm
+            }
+        }
     }
 }
-
