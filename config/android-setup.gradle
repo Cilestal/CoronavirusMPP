@@ -26,4 +26,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        pickFirst 'META-INF/*.kotlin_module'
+    }
 }

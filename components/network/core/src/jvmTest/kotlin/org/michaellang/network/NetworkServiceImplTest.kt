@@ -1,20 +1,21 @@
 package org.michaellang.network
 
+import io.mockk.MockKAnnotations
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.UnstableDefault
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
-import org.mockito.MockitoAnnotations
 
 internal class NetworkServiceImplTest {
 
     private lateinit var sut: NetworkServiceImpl
 
+    @UnstableDefault
     @BeforeEach
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-
+        MockKAnnotations.init(this, relaxed = true)
 
         val httpClient = HttpClientProvider().client
         sut = NetworkServiceImpl(httpClient, BASE_URL)
@@ -31,7 +32,7 @@ internal class NetworkServiceImplTest {
     @Test
     fun getSummary() {
         runBlocking {
-            val summary = sut.getSummary()
+            sut.getSummary()
         }
     }
 

@@ -1,15 +1,19 @@
 ext {
-    commonDependencyGroup = {
+    commonMain_dependencies = {
         implementation project(':common-contract')
         api "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$kotlin_coroutines_version"
         api "org.kodein.di:kodein-di-erased:$kodein_version"
     }
 
-    androidDependencyGroup = {
+    androidMain_dependencies = {
         api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
     }
 
-    iOSDependencyGroup = {
+    jvmMain_dependencies = {
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    }
+
+    iOSMain_dependencies = {
         api "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$kotlin_coroutines_version"
     }
 }

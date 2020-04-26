@@ -1,8 +1,12 @@
 ext {
-    commonDependencyGroup = {
+    commonMain_dependencies = {
         implementation project(':common-core')
         implementation project(":database-contract")
     }
+
+//    androidMain_dependencies = {
+//        implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
+//    }
 }
 
 apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

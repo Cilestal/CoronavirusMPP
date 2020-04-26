@@ -31,10 +31,9 @@ ext {
     glide_version = "4.11.0"
     kodein_version = "6.5.5"
 
+    okhttp_version = "4.5.0"
 
     // test
-    junit_platform_version = "1.0.0"
     junit_version="5.2.0"
-    mockito_version="2.23.0"
-    mockito_kotlin_version="2.1.0"
+    mockk_version = "1.10.0"
 }

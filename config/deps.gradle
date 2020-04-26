@@ -1,6 +1,7 @@
 ext {
 
-    kotlin = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    kotlin_stdlib_common = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version")
+    kotlin_stdlib_jvm = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
     kotlin_reflect = dependencies.create("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
 
     // android x
@@ -29,4 +30,12 @@ ext {
         apply plugin: 'kotlinx-serialization'
     }
 
+    // okhttp
+    okhttp = dependencies.create("com.squareup.okhttp3:okhttp:$okhttp_version")
+
+    // test
+    mockk = dependencies.create("io.mockk:mockk-common:$mockk_version")
+    mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version")
+    test_common = dependencies.create("org.jetbrains.kotlin:kotlin-test-common:$kotlin_version")
+    test_common_annotations = dependencies.create("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version")
 }

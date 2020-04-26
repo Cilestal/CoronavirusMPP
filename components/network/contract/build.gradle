@@ -1,5 +1,5 @@
 ext {
-    commonDependencyGroup = {
+    commonMain_dependencies = {
         implementation project(":common-contract")
     }
 }

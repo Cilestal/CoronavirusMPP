@@ -2,10 +2,9 @@ rootProject.name = 'MPPSample'
 enableFeaturePreview('GRADLE_METADATA')
 
 // common
-include 'common-contract', 'common-core', 'common-test'
+include 'common-contract', 'common-core'
 project(':common-contract').projectDir = file('components/common/contract')
 project(':common-core').projectDir = file('components/common/core')
-project(':common-test').projectDir = file('components/common/test')
 
 // network
 include 'network-contract', 'network-core'

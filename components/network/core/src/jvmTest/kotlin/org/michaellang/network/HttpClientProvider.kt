@@ -8,11 +8,13 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.http.ContentType
 import io.ktor.http.headersOf
+import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.JsonConfiguration
 import java.nio.file.Files
 import java.nio.file.Paths
 
 class HttpClientProvider {
+    @UnstableDefault
     val client = HttpClient(MockEngine) {
         val json = kotlinx.serialization.json.Json(
             configuration = JsonConfiguration(

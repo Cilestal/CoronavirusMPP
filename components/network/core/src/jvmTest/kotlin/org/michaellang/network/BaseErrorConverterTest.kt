@@ -1,25 +1,22 @@
 package org.michaellang.network
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import io.ktor.client.features.SocketTimeoutException
+import io.mockk.MockKAnnotations
+import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.michaellang.test.BaseTest
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
-internal class BaseErrorConverterTest : BaseTest() {
+internal class BaseErrorConverterTest {
 
-    @Mock
+    @MockK
     private lateinit var platformErrorConverter: PlatformErrorConverter
 
     private lateinit var sut: NetworkErrorConverterImpl
 
     @BeforeEach
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this, relaxed = true)
 
         sut = NetworkErrorConverterImpl(platformErrorConverter)
     }
@@ -27,18 +24,18 @@ internal class BaseErrorConverterTest : BaseTest() {
     @Test
     fun `mapThrowable should invoke systemErrorConverter`() {
         runBlocking {
-            val socketTimeoutException = SocketTimeoutException(mock(), mock())
+            val socketTimeoutException = Throwable()
             sut.mapThrowable(socketTimeoutException)
-            verify(platformErrorConverter).mapThrowable(socketTimeoutException)
+            verify { platformErrorConverter.mapThrowable(socketTimeoutException) }
         }
     }
 
     @Test
     fun `mapThrowable should return UnclassifiedException`() {
         runBlocking {
-            val socketTimeoutException = SocketTimeoutException(mock(), mock())
+            val socketTimeoutException = Throwable()
             sut.mapThrowable(socketTimeoutException)
-            verify(platformErrorConverter).mapThrowable(socketTimeoutException)
+            verify { platformErrorConverter.mapThrowable(socketTimeoutException) }
         }
     }
 }

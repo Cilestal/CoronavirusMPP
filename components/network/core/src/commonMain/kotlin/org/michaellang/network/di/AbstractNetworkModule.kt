@@ -6,13 +6,12 @@ import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 import org.michaellang.network.*
+import org.michaellang.network.interceptor.TokenInterceptor
 
-class NetworkCoreModule(
-    errorConverter: PlatformErrorConverter,
-    httpClient: HttpClient,
-    baseUrl: String
-) {
+abstract class AbstractNetworkModule {
+
     val module = Kodein.Module("core_network_module") {
+        import(InterceptorsModule().module)
 
         bind<NetworkService>() with singleton {
             NetworkServiceImpl(instance(TAG_HTTP_CLIENT), instance(TAG_BASE_URL))
@@ -22,10 +21,14 @@ class NetworkCoreModule(
         }
 
         // platform
-        bind<PlatformErrorConverter>(TAG_PLATFORM_ERROR_CONVERTER) with singleton { errorConverter }
-        bind<HttpClient>(TAG_HTTP_CLIENT) with singleton { httpClient }
-        bind<String>(TAG_BASE_URL) with singleton { baseUrl }
+        bind<PlatformErrorConverter>(TAG_PLATFORM_ERROR_CONVERTER) with singleton { getPlatformErrorConverter() }
+        bind<HttpClient>(TAG_HTTP_CLIENT) with singleton { getHttpClient(instance()) }
+        bind<String>(TAG_BASE_URL) with singleton { getBaseUrl() }
     }
+
+    abstract fun getPlatformErrorConverter(): PlatformErrorConverter
+    abstract fun getHttpClient(tokenInterceptor: TokenInterceptor): HttpClient
+    abstract fun getBaseUrl(): String
 
     companion object {
         private const val TAG_BASE_URL = "base_url"
