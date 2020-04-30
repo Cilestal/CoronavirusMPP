@@ -3,24 +3,15 @@ package org.michaellang.database
 import android.content.Context
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.erased.instanceOrNull
+import org.michaellang.common.test.KodeinTest
 import org.michaellang.database.dao.CountryDao
 
-class AndroidDatabaseModuleTest : KodeinAware {
-
-    override val kodein = Kodein.lazy {
-        import(getModule())
-    }
+class AndroidDatabaseModuleTest : KodeinTest<AndroidDatabaseModule>() {
 
     @MockK
     private lateinit var context: Context
-
-    private lateinit var sut: AndroidDatabaseModule
 
     @Before
     internal fun setUp() {
@@ -30,9 +21,7 @@ class AndroidDatabaseModuleTest : KodeinAware {
 
     @Test
     fun testDI() {
-        val instance: CountryDao? by instanceOrNull<CountryDao>()
-        assertNotNull(instance)
+        test<CountryDao>()
     }
 
-    private fun getModule() = sut.module
 }

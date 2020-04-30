@@ -3,38 +3,30 @@ package org.michaellang.network.di
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import kotlinx.serialization.json.Json
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.erased.instance
-import org.kodein.di.erased.instanceOrNull
+import org.michaellang.common.test.KodeinTest
+import org.michaellang.network.NetworkErrorConverter
 import org.michaellang.network.NetworkService
 
-class AndroidNetworkModuleTest : KodeinAware {
-
-    override val kodein = Kodein.lazy {
-        import(getModule())
-    }
+class AndroidNetworkModuleTest : KodeinTest<AndroidNetworkModule>() {
 
     @MockK
     private lateinit var json: Json
 
-    private lateinit var sut: AndroidNetworkModule
-
     @Before
     internal fun setUp() {
         MockKAnnotations.init(this, relaxed = true)
-
         sut = AndroidNetworkModule(json)
     }
 
     @Test
-    fun initModule() {
-        val instance: NetworkService? by instanceOrNull<NetworkService>()
-        assertNotNull(instance)
+    fun testNetworkService() {
+        test<NetworkService>()
     }
 
-    private fun getModule() = sut.module
+    @Test
+    fun testNetworkErrorConverter() {
+        test<NetworkErrorConverter>()
+    }
 }

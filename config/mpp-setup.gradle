@@ -43,8 +43,6 @@ kotlin {
         androidTest {
             dependsOn commonMain
             dependencies {
-                implementation test_common
-                implementation test_common_annotations
                 implementation 'com.android.support.test:runner:1.0.2'
 
                 implementation mockk_jvm
