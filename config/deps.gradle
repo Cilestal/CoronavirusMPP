@@ -40,7 +40,20 @@ ext {
 
     // test
     mockk = dependencies.create("io.mockk:mockk-common:$mockk_version")
-    mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version")
+    mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version") {
+        exclude group: 'org.slf4j'
+    }
     test_common = dependencies.create("org.jetbrains.kotlin:kotlin-test-common:$kotlin_version")
     test_common_annotations = dependencies.create("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version")
+
+    jupiter_api = dependencies.create("org.junit.jupiter:junit-jupiter-api:$junit_version")
+    jupiter_params = dependencies.create("org.junit.jupiter:junit-jupiter-params:$junit_version")
+    jupiter_engine = dependencies.create("org.junit.jupiter:junit-jupiter-engine:$junit_version")
+
+    jvmTestPack = [
+            jupiter_api,
+            jupiter_params,
+            jupiter_engine,
+            mockk_jvm
+    ]
 }

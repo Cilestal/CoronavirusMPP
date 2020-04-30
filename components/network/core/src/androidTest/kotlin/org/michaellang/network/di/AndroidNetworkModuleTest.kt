@@ -3,8 +3,8 @@ package org.michaellang.network.di
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import kotlinx.serialization.json.Json
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.michaellang.common.test.KodeinTest
 import org.michaellang.network.NetworkErrorConverter
 import org.michaellang.network.NetworkService
@@ -14,7 +14,7 @@ class AndroidNetworkModuleTest : KodeinTest<AndroidNetworkModule>() {
     @MockK
     private lateinit var json: Json
 
-    @Before
+    @BeforeEach
     internal fun setUp() {
         MockKAnnotations.init(this, relaxed = true)
         sut = AndroidNetworkModule(json)

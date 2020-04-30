@@ -5,6 +5,12 @@ apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
 android {
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
     sourceSets {
         main {
             setRoot('src/androidMain')
@@ -43,9 +49,9 @@ kotlin {
         androidTest {
             dependsOn commonMain
             dependencies {
-                implementation 'com.android.support.test:runner:1.0.2'
-
-                implementation mockk_jvm
+                jvmTestPack.each {
+                    implementation it
+                }
             }
         }
     }
