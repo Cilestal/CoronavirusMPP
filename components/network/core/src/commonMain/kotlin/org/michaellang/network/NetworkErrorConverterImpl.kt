@@ -19,9 +19,10 @@ class NetworkErrorConverterImpl(
 
     private fun mapHttpException(httpException: ResponseException): NetworkException {
         return when (httpException.response.status.value) {
-            HTTP_UNAUTHORIZED -> NetworkException.UnclassifiedException()
-            HTTP_FORBIDDEN -> NetworkException.UnclassifiedException()
-            else -> NetworkException.UnclassifiedException()
+            //todo update
+            HTTP_UNAUTHORIZED -> NetworkException.UnclassifiedException(cause = httpException)
+            HTTP_FORBIDDEN -> NetworkException.UnclassifiedException(cause = httpException)
+            else -> NetworkException.UnclassifiedException(cause = httpException)
         }
     }
 }

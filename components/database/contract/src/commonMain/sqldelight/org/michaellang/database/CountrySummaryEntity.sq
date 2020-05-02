@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS countrySummaryEntity;
 CREATE TABLE countrySummaryEntity (
   country TEXT NOT NULL,
   countryCode TEXT NOT NULL,
-  slug TEXT NOT NULL,
   newConfirmed INTEGER NOT NULL,
   totalConfirmed INTEGER NOT NULL,
   newDeaths INTEGER NOT NULL,
@@ -17,7 +16,6 @@ insert:
 INSERT OR REPLACE INTO countrySummaryEntity(
   country,
   countryCode,
-  slug,
   newConfirmed,
   totalConfirmed,
   newDeaths,

@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS globalSummaryEntity;
 CREATE TABLE globalSummaryEntity (
-  id INTEGER NOT NULL,
   newConfirmed INTEGER NOT NULL,
   totalConfirmed INTEGER NOT NULL,
   newDeaths INTEGER NOT NULL,
@@ -8,12 +7,11 @@ CREATE TABLE globalSummaryEntity (
   newRecovered INTEGER NOT NULL,
   totalRecovered INTEGER NOT NULL,
   date TEXT NOT NULL,
-  PRIMARY KEY (id, date)
+  PRIMARY KEY (date)
 );
 
 insert:
 INSERT OR REPLACE INTO globalSummaryEntity(
-  id,
   newConfirmed,
   totalConfirmed,
   newDeaths,

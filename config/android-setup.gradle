@@ -9,6 +9,19 @@ android {
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        ignoreWarnings true
+        quiet true
     }
 
     buildTypes {

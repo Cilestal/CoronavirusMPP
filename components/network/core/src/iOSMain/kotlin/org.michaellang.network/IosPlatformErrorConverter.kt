@@ -7,13 +7,14 @@ import org.michaellang.network.exception.NetworkException
 class IosPlatformErrorConverter : PlatformErrorConverter {
     @KtorExperimentalAPI
     override fun mapThrowable(throwable: Throwable): NetworkException {
+        //todo impl
         return when (throwable) {
             is NetworkException -> throwable
             is IosHttpRequestException -> {
-                NetworkException.ConnectionException("")
+                NetworkException.ConnectionException("", throwable)
             }
             else -> {
-                NetworkException.UnclassifiedException("")
+                NetworkException.UnclassifiedException("", throwable)
             }
         }
     }

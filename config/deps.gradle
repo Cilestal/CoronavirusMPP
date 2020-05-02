@@ -8,6 +8,7 @@ ext {
     appcompat = dependencies.create("androidx.appcompat:appcompat:$appcompat_version")
     coreCtx = dependencies.create("androidx.core:core-ktx:$core_ktx_version")
     constraintlayout = dependencies.create("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    multidex = dependencies.create("androidx.multidex:multidex:$multidex_version")
 
     // glide
     glide = dependencies.create("com.github.bumptech.glide:glide:$glide_version")
@@ -43,17 +44,17 @@ ext {
     mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version") {
         exclude group: 'org.slf4j'
     }
-    test_common = dependencies.create("org.jetbrains.kotlin:kotlin-test-common:$kotlin_version")
-    test_common_annotations = dependencies.create("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version")
 
-    jupiter_api = dependencies.create("org.junit.jupiter:junit-jupiter-api:$junit_version")
-    jupiter_params = dependencies.create("org.junit.jupiter:junit-jupiter-params:$junit_version")
-    jupiter_engine = dependencies.create("org.junit.jupiter:junit-jupiter-engine:$junit_version")
+    test_common = [
+            dependencies.create("org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"),
+            dependencies.create("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version"),
+            mockk_jvm
+    ]
 
-    jvmTestPack = [
-            jupiter_api,
-            jupiter_params,
-            jupiter_engine,
+    jvm_test_array = [
+            dependencies.create("org.junit.jupiter:junit-jupiter-api:$junit_version"),
+            dependencies.create("org.junit.jupiter:junit-jupiter-params:$junit_version"),
+            dependencies.create("org.junit.jupiter:junit-jupiter-engine:$junit_version"),
             mockk_jvm
     ]
 }

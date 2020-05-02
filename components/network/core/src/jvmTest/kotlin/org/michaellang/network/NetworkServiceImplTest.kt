@@ -1,6 +1,7 @@
 package org.michaellang.network
 
 import io.mockk.MockKAnnotations
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.UnstableDefault
 import org.junit.jupiter.api.BeforeEach
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.Assertions.*
 
 internal class NetworkServiceImplTest {
 
+    @MockK
+    private lateinit var networkErrorConverter: NetworkErrorConverter
+
     private lateinit var sut: NetworkServiceImpl
 
     @UnstableDefault
@@ -18,7 +22,7 @@ internal class NetworkServiceImplTest {
         MockKAnnotations.init(this, relaxed = true)
 
         val httpClient = HttpClientProvider().client
-        sut = NetworkServiceImpl(httpClient, BASE_URL)
+        sut = NetworkServiceImpl(networkErrorConverter, httpClient, BASE_URL)
     }
 
     @Test

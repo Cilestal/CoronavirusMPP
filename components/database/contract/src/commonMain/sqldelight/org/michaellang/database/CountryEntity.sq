@@ -1,12 +1,11 @@
 DROP TABLE IF EXISTS countryEntity;
 CREATE TABLE countryEntity (
   country TEXT PRIMARY KEY NOT NULL,
-  slug TEXT NOT NULL,
   iso2 TEXT NOT NULL
 );
 
 insert:
-INSERT OR REPLACE INTO countryEntity(country, slug, iso2)
+INSERT OR REPLACE INTO countryEntity(country, iso2)
 VALUES ?;
 
 getCountry:

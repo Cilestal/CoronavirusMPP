@@ -16,5 +16,10 @@ include 'database-contract', 'database-core'
 project(':database-contract').projectDir = file('components/database/contract')
 project(':database-core').projectDir = file('components/database/core')
 
+// data
+include 'data-contract', 'data-core'
+project(':data-contract').projectDir = file('components/data/contract')
+project(':data-core').projectDir = file('components/data/core')
+
 include 'android_app'
 project(':android_app').projectDir = file('platform/android/app')

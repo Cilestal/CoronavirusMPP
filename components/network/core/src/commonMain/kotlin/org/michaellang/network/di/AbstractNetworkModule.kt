@@ -15,7 +15,7 @@ abstract class AbstractNetworkModule : KodeinModuleHolder {
         import(InterceptorsModule().module)
 
         bind<NetworkService>() with singleton {
-            NetworkServiceImpl(instance(TAG_HTTP_CLIENT), instance(TAG_BASE_URL))
+            NetworkServiceImpl(instance(), instance(TAG_HTTP_CLIENT), instance(TAG_BASE_URL))
         }
         bind<NetworkErrorConverter>() with singleton {
             NetworkErrorConverterImpl(instance(TAG_PLATFORM_ERROR_CONVERTER))

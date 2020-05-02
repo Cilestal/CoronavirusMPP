@@ -1,8 +1,8 @@
 apply plugin: 'kotlin-multiplatform'
 
 def getClosureByNameOrEmpty(String name) {
-    if (this.properties.containsKey(name)) {
-        return this.properties.find { it.key == name }.value
+    if (project.properties.containsKey(name)) {
+        return project.properties.find { it.key == name }.value
     } else {
         return {}
     }
@@ -12,14 +12,21 @@ kotlin {
     targets {
         jvm()
 
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")      \
-                                   ? presets.iosArm64 : presets.iosX64
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")       \
+                                    ? presets.iosArm64 : presets.iosX64
 
         fromPreset(iOSTarget, 'iOS')
     }
 
     sourceSets {
         commonMain {
+            dependencies {
+                implementation kotlin_stdlib_common
+                implementation kotlinx_serialization
+            }
+        }
+
+        commonTest {
             dependencies {
                 implementation kotlin_stdlib_common
                 implementation kotlinx_serialization
@@ -42,9 +49,9 @@ kotlin {
         }
 
         jvmTest {
-            dependsOn jvmMain
+            dependsOn commonTest
             dependencies {
-                jvmTestPack.each {
+                jvm_test_array.each {
                     implementation it
                 }
             }

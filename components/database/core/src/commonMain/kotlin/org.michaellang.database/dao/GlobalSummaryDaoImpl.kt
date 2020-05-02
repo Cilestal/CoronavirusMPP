@@ -11,8 +11,8 @@ class GlobalSummaryDaoImpl(
         queries.insert(data)
     }
 
-    override fun getSummary(date: String) {
-        queries.getSummary(date)
+    override fun getSummary(date: String): GlobalSummaryEntity? {
+        return queries.getSummary(date).executeAsOneOrNull()
     }
 
     override fun clear() {

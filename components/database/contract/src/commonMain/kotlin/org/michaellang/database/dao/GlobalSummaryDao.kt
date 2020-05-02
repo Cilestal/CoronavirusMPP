@@ -4,6 +4,6 @@ import org.michaellang.database.GlobalSummaryEntity
 
 interface GlobalSummaryDao {
     fun insertSummary(data: GlobalSummaryEntity)
-    fun getSummary(date: String)
+    fun getSummary(date: String): GlobalSummaryEntity?
     fun clear()
 }

@@ -12,16 +12,16 @@ class AndroidPlatformErrorConverter : PlatformErrorConverter {
                 throwable
             }
             throwable is UnknownHostException || throwable.cause is UnknownHostException -> {
-                NetworkException.ConnectionException("UnknownHostException")
+                NetworkException.ConnectionException("UnknownHostException", throwable)
             }
             throwable is ConnectException || throwable.cause is ConnectException -> {
-                NetworkException.ConnectionException("ConnectException")
+                NetworkException.ConnectionException("ConnectException", throwable)
             }
             throwable is SocketTimeoutException || throwable.cause is SocketTimeoutException -> {
-                NetworkException.ConnectionException("SocketTimeoutException")
+                NetworkException.ConnectionException("SocketTimeoutException", throwable)
             }
             else -> {
-                NetworkException.UnclassifiedException()
+                NetworkException.UnclassifiedException(cause = throwable)
             }
         }
     }

@@ -13,10 +13,8 @@ class CountrySummaryDaoImpl(
         }
     }
 
-    override fun getSummary(country: String, date: String?): CountrySummaryEntity? {
-        return date?.let {
-            queries.getSummary(country, it).executeAsOneOrNull()
-        } ?: queries.getSummaryByCountry(country).executeAsOneOrNull()
+    override fun getSummary(country: String, date: String): CountrySummaryEntity? {
+        return queries.getSummary(country, date).executeAsOneOrNull()
     }
 
     override fun clear() {
