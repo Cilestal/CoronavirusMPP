@@ -1,6 +1,10 @@
 package org.michaellang.data.datasource
 
-import org.michaellang.data.model.statistic.*
+import org.michaellang.data.model.covid.CountryData
+import org.michaellang.data.model.covid.CountrySummaryData
+import org.michaellang.data.model.covid.DayOneData
+import org.michaellang.data.model.covid.GlobalSummaryData
+import org.michaellang.data.model.covid.SummaryData
 
 interface CovidDataSource {
 

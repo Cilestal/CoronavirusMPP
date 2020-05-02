@@ -1,7 +1,7 @@
 package org.michaellang.data.datasource.local.mapper.covid
 
 import org.michaellang.data.mapper.Mapper
-import org.michaellang.data.model.statistic.CountrySummaryData
+import org.michaellang.data.model.covid.CountrySummaryData
 import org.michaellang.database.CountrySummaryEntity
 
 class LocalCountrySummaryDataMapper : Mapper<CountrySummaryEntity, CountrySummaryData> {

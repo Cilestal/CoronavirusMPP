@@ -25,7 +25,7 @@ internal class DataCoreDatasourceModule {
 
     private val remote = Kodein.Module("data_core_remote_data_source_module") {
         bind<CovidDataSource.Remote>() with singleton {
-            CovidDataSourceRemote(instance(), instance(), instance(), instance())
+            CovidDataSourceRemote(instance(), instance(), instance(), instance(), instance())
         }
     }
 }

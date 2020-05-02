@@ -3,7 +3,11 @@ package org.michaellang.data.repository
 import DateTimeProvider
 import org.michaellang.data.datasource.CovidDataSource
 import org.michaellang.data.model.DataResult
-import org.michaellang.data.model.statistic.*
+import org.michaellang.data.model.covid.CountryData
+import org.michaellang.data.model.covid.CountrySummaryData
+import org.michaellang.data.model.covid.DayOneData
+import org.michaellang.data.model.covid.GlobalSummaryData
+import org.michaellang.data.model.covid.SummaryData
 import org.michaellang.data.repository.CovidRepository.Companion.DATE_FORMAT
 import org.michaellang.data.toDbResult
 import org.michaellang.data.toNetworkResult

@@ -1,13 +1,16 @@
 package org.michaellang.data.datasource.base
 
-abstract class BaseDataSourceRemote {
+import org.michaellang.data.datasource.remote.mapper.RemoteDataSourceErrorMapper
+
+abstract class BaseDataSourceRemote(
+    protected val remoteDataSourceErrorMapper: RemoteDataSourceErrorMapper
+) {
 
     suspend fun <T : Any> runOrThrow(block: suspend () -> T): T {
         return runCatching {
             block()
         }.onFailure {
-            //throw networkErrorConverter.mapThrowable(it)
-            throw it
+            throw remoteDataSourceErrorMapper.map(it)
         }.getOrThrow()
     }
 }

@@ -8,9 +8,7 @@ import java.net.UnknownHostException
 class AndroidPlatformErrorConverter : PlatformErrorConverter {
     override fun mapThrowable(throwable: Throwable): NetworkException {
         return when {
-            throwable is NetworkException -> {
-                throwable
-            }
+            throwable is NetworkException -> throwable
             throwable is UnknownHostException || throwable.cause is UnknownHostException -> {
                 NetworkException.ConnectionException("UnknownHostException", throwable)
             }
@@ -20,9 +18,7 @@ class AndroidPlatformErrorConverter : PlatformErrorConverter {
             throwable is SocketTimeoutException || throwable.cause is SocketTimeoutException -> {
                 NetworkException.ConnectionException("SocketTimeoutException", throwable)
             }
-            else -> {
-                NetworkException.UnclassifiedException(cause = throwable)
-            }
+            else -> NetworkException.UnclassifiedException(cause = throwable)
         }
     }
 }

@@ -11,6 +11,7 @@ import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryDat
 import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryEntityMapper
 import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryDataMapper
 import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryEntityMapper
+import org.michaellang.data.datasource.remote.mapper.RemoteDataSourceErrorMapper
 import org.michaellang.data.datasource.remote.mapper.covid.RemoteCountryDataMapper
 import org.michaellang.data.datasource.remote.mapper.covid.RemoteCountrySummaryDataMapper
 import org.michaellang.data.datasource.remote.mapper.covid.RemoteDateMapper
@@ -46,35 +47,27 @@ internal class DataCoreMappersModule {
     }
 
     private val remoteMappersModule = Kodein.Module("data_core_remote_mappers_module") {
+        bind<RemoteDataSourceErrorMapper>() with singleton {
+            RemoteDataSourceErrorMapper()
+        }
+
         bind<RemoteDateMapper>() with singleton {
-            RemoteDateMapper(
-                instance(TAG_TIME_PROVIDER)
-            )
+            RemoteDateMapper(instance(TAG_TIME_PROVIDER))
         }
         bind<RemoteCountryDataMapper>() with singleton {
             RemoteCountryDataMapper()
         }
         bind<RemoteSummaryDataMapper>() with singleton {
-            RemoteSummaryDataMapper(
-                instance(),
-                instance(),
-                instance()
-            )
+            RemoteSummaryDataMapper(instance(), instance(), instance())
         }
         bind<RemoteDayOneDataMapper>() with singleton {
-            RemoteDayOneDataMapper(
-                instance()
-            )
+            RemoteDayOneDataMapper(instance())
         }
         bind<RemoteCountrySummaryDataMapper>() with singleton {
-            RemoteCountrySummaryDataMapper(
-                instance()
-            )
+            RemoteCountrySummaryDataMapper(instance())
         }
         bind<RemoteGlobalSummaryDataMapper>() with singleton {
-            RemoteGlobalSummaryDataMapper(
-                instance()
-            )
+            RemoteGlobalSummaryDataMapper(instance())
         }
     }
 }

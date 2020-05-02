@@ -8,9 +8,9 @@ import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryDat
 import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryEntityMapper
 import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryDataMapper
 import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryEntityMapper
-import org.michaellang.data.model.statistic.CountryData
-import org.michaellang.data.model.statistic.CountrySummaryData
-import org.michaellang.data.model.statistic.GlobalSummaryData
+import org.michaellang.data.model.covid.CountryData
+import org.michaellang.data.model.covid.CountrySummaryData
+import org.michaellang.data.model.covid.GlobalSummaryData
 import org.michaellang.database.dao.CountryDao
 import org.michaellang.database.dao.CountrySummaryDao
 import org.michaellang.database.dao.GlobalSummaryDao
@@ -28,44 +28,61 @@ internal class CovidDataSourceLocal(
 ) : BaseDataSourceLocal(), CovidDataSource.Local {
 
     override fun saveCountries(list: List<CountryData>) {
-        list.map(countryEntityMapper::map)
-            .let(countryDao::insertCountries)
+        runOrThrow {
+            list.map(countryEntityMapper::map)
+                .let(countryDao::insertCountries)
+        }
     }
 
     override fun getCountry(iso2: String): CountryData? {
-        return countryDao.getCountry(iso2)
-            ?.let(countryDataMapper::map)
+        runOrThrow {
+            return countryDao.getCountry(iso2)
+                ?.let(countryDataMapper::map)
+        }
     }
 
     override fun getCountryList(): List<CountryData> {
-        return countryDao.getCountryList()
-            .map(countryDataMapper::map)
+        runOrThrow {
+            return countryDao.getCountryList()
+                .map(countryDataMapper::map)
+        }
     }
 
     override fun saveSummaries(list: List<CountrySummaryData>) {
-        list.map(countrySummaryEntityMapper::map)
-            .let(countrySummaryDao::insertSummaries)
+        runOrThrow {
+            list.map(countrySummaryEntityMapper::map)
+                .let(countrySummaryDao::insertSummaries)
+        }
     }
 
     override fun getSummary(country: String, date: String): CountrySummaryData? {
-        return countrySummaryDao.getSummary(country, date)
-            ?.let(countrySummaryDataMapper::map)
+        runOrThrow {
+            return countrySummaryDao.getSummary(country, date)
+                ?.let(countrySummaryDataMapper::map)
+        }
     }
 
     override fun saveGlobalSummary(data: GlobalSummaryData) {
-        globalSummaryEntityMapper.map(data)
-            .let(globalSummaryDao::insertSummary)
+        runOrThrow {
+            globalSummaryEntityMapper.map(data)
+                .let(globalSummaryDao::insertSummary)
+        }
     }
 
     override fun getGlobalSummary(date: String): GlobalSummaryData? {
-        return globalSummaryDao.getSummary(date)
-            ?.let(globalSummaryDataMapper::map)
+        runOrThrow {
+            return globalSummaryDao.getSummary(date)
+                ?.let(globalSummaryDataMapper::map)
+        }
     }
 
     override fun clearCache() {
-        countryDao.clear()
-        countrySummaryDao.clear()
-        globalSummaryDao.clear()
+        //todo impl
+        runOrThrow {
+            countryDao.clear()
+            countrySummaryDao.clear()
+            globalSummaryDao.clear()
+        }
     }
 
 }

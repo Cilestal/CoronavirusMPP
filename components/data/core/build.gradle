@@ -12,6 +12,10 @@ ext {
         implementation project(':database-core')
     }
 
+    iOSMain_dependencies = {
+        implementation project(':network-core')
+        implementation project(':database-core')
+    }
 }
 
 apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

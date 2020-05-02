@@ -1,7 +1,7 @@
 package org.michaellang.data.datasource.remote.mapper.covid
 
 import org.michaellang.data.mapper.Mapper
-import org.michaellang.data.model.statistic.SummaryData
+import org.michaellang.data.model.covid.SummaryData
 import org.michaellang.network.dto.SummaryDto
 
 class RemoteSummaryDataMapper(

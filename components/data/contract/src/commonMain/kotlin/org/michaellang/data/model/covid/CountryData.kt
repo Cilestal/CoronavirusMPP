@@ -1,4 +1,4 @@
-package org.michaellang.data.model.statistic
+package org.michaellang.data.model.covid
 
 data class CountryData(
     val country: String,

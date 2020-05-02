@@ -2,7 +2,7 @@ package org.michaellang.data.datasource.remote.mapper.covid
 
 import org.michaellang.data.datasource.remote.mapper.covid.RemoteDateMapper
 import org.michaellang.data.mapper.Mapper
-import org.michaellang.data.model.statistic.DayOneData
+import org.michaellang.data.model.covid.DayOneData
 import org.michaellang.network.dto.DayOneDto
 
 class RemoteDayOneDataMapper(
