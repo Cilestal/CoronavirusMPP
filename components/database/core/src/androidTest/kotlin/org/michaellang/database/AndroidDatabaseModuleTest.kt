@@ -12,6 +12,7 @@ class AndroidDatabaseModuleTest : KodeinTest<AndroidDatabaseModule>() {
 
     @MockK
     private lateinit var context: Context
+    override lateinit var sut: AndroidDatabaseModule
 
     @BeforeEach
     internal fun setUp() {

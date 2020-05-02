@@ -2,12 +2,12 @@ package org.michaellang.data.datasource.local
 
 import org.michaellang.data.datasource.CovidDataSource
 import org.michaellang.data.datasource.base.BaseDataSourceLocal
-import org.michaellang.data.datasource.local.mapper.covid.LocalCountryDataMapper
-import org.michaellang.data.datasource.local.mapper.covid.LocalCountryEntityMapper
-import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryDataMapper
-import org.michaellang.data.datasource.local.mapper.covid.LocalCountrySummaryEntityMapper
-import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryDataMapper
-import org.michaellang.data.datasource.local.mapper.covid.LocalGlobalSummaryEntityMapper
+import org.michaellang.data.mapper.covid.local.LocalCountryDataMapper
+import org.michaellang.data.mapper.covid.local.LocalCountryEntityMapper
+import org.michaellang.data.mapper.covid.local.LocalCountrySummaryDataMapper
+import org.michaellang.data.mapper.covid.local.LocalCountrySummaryEntityMapper
+import org.michaellang.data.mapper.covid.local.LocalGlobalSummaryDataMapper
+import org.michaellang.data.mapper.covid.local.LocalGlobalSummaryEntityMapper
 import org.michaellang.data.model.covid.CountryData
 import org.michaellang.data.model.covid.CountrySummaryData
 import org.michaellang.data.model.covid.GlobalSummaryData
@@ -37,7 +37,7 @@ internal class CovidDataSourceLocal(
     override fun getCountry(iso2: String): CountryData? {
         runOrThrow {
             return countryDao.getCountry(iso2)
-                ?.let(countryDataMapper::map)
+                .let(countryDataMapper::map)
         }
     }
 
@@ -58,7 +58,7 @@ internal class CovidDataSourceLocal(
     override fun getSummary(country: String, date: String): CountrySummaryData? {
         runOrThrow {
             return countrySummaryDao.getSummary(country, date)
-                ?.let(countrySummaryDataMapper::map)
+                .let(countrySummaryDataMapper::map)
         }
     }
 
@@ -72,7 +72,7 @@ internal class CovidDataSourceLocal(
     override fun getGlobalSummary(date: String): GlobalSummaryData? {
         runOrThrow {
             return globalSummaryDao.getSummary(date)
-                ?.let(globalSummaryDataMapper::map)
+                .let(globalSummaryDataMapper::map)
         }
     }
 

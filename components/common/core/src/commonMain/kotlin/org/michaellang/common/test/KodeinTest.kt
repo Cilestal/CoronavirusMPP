@@ -11,7 +11,7 @@ abstract class KodeinTest<T : KodeinModuleHolder> : KodeinAware {
         import(sut.module)
     }
 
-    protected lateinit var sut: T
+    protected abstract var sut: T
 
     protected inline fun <reified T : Any> test(): T {
         val instance: T by instance<T>()

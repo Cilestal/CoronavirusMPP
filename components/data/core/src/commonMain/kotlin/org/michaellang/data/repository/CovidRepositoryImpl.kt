@@ -1,6 +1,6 @@
 package org.michaellang.data.repository
 
-import DateTimeProvider
+import org.michaellang.common.DateTimeProvider
 import org.michaellang.data.datasource.CovidDataSource
 import org.michaellang.data.model.DataResult
 import org.michaellang.data.model.covid.CountryData

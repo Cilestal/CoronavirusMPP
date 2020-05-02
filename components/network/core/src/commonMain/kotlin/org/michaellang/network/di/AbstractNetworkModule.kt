@@ -6,7 +6,11 @@ import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 import org.michaellang.common.di.KodeinModuleHolder
-import org.michaellang.network.*
+import org.michaellang.network.NetworkErrorConverter
+import org.michaellang.network.NetworkErrorConverterImpl
+import org.michaellang.network.NetworkService
+import org.michaellang.network.NetworkServiceImpl
+import org.michaellang.network.PlatformErrorConverter
 import org.michaellang.network.interceptor.TokenInterceptor
 
 abstract class AbstractNetworkModule : KodeinModuleHolder {

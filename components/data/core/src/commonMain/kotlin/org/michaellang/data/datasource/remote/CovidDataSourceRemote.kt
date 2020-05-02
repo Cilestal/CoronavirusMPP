@@ -3,9 +3,9 @@ package org.michaellang.data.datasource.remote
 import org.michaellang.data.datasource.CovidDataSource
 import org.michaellang.data.datasource.base.BaseDataSourceRemote
 import org.michaellang.data.datasource.remote.mapper.RemoteDataSourceErrorMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteCountryDataMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteDayOneDataMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteSummaryDataMapper
+import org.michaellang.data.mapper.covid.remote.RemoteCountryDataMapper
+import org.michaellang.data.mapper.covid.remote.RemoteDayOneDataMapper
+import org.michaellang.data.mapper.covid.remote.RemoteSummaryDataMapper
 import org.michaellang.data.model.covid.CountryData
 import org.michaellang.data.model.covid.DayOneData
 import org.michaellang.data.model.covid.SummaryData

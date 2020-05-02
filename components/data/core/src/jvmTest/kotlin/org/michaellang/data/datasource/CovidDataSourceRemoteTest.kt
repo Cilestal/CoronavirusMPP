@@ -3,12 +3,12 @@ package org.michaellang.data.datasource
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import org.junit.jupiter.api.BeforeEach
-import org.michaellang.data.datasource.remote.CovidDataSourceRemote
 import org.michaellang.data.datasource.remote.mapper.RemoteDataSourceErrorMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteCountryDataMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteDayOneDataMapper
-import org.michaellang.data.datasource.remote.mapper.covid.RemoteSummaryDataMapper
+import org.michaellang.data.mapper.covid.remote.RemoteDayOneDataMapper
+import org.michaellang.data.mapper.covid.remote.RemoteSummaryDataMapper
 import org.michaellang.network.NetworkService
+import org.michaellang.data.mapper.covid.remote.RemoteCountryDataMapper
+import org.michaellang.data.datasource.remote.CovidDataSourceRemote
 
 class CovidDataSourceRemoteTest {
 

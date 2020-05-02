@@ -13,6 +13,7 @@ class AndroidNetworkModuleTest : KodeinTest<AndroidNetworkModule>() {
 
     @MockK
     private lateinit var json: Json
+    override lateinit var sut: AndroidNetworkModule
 
     @BeforeEach
     internal fun setUp() {
