@@ -1,0 +1,23 @@
+ext {
+    commonMain_dependencies = {
+        api project(':common-contract')
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$kotlin_coroutines_version"
+        api kodein
+    }
+
+    androidMain_dependencies = {
+        implementation appcompat
+        implementation kodeinAndroid
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+    }
+
+    jvmMain_dependencies = {
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    }
+
+    iOSMain_dependencies = {
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$kotlin_coroutines_version"
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

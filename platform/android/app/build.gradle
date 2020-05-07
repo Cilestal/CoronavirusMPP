@@ -25,6 +25,8 @@ dependencies {
     implementation coreCtx
     implementation constraintlayout
 
+    implementation kotlinx_serialization_jvm
+
     // glide
     implementation glide
     annotationProcessor glideCompiler
@@ -33,6 +35,13 @@ dependencies {
     implementation kodeinJvm
     implementation kodeinAndroid
 
+    implementation project(":common-contract")
+    implementation project(":common-core")
+    implementation project(":network-contract")
+    implementation project(":network-core")
+    implementation project(":database-contract")
+    implementation project(":database-core")
+    implementation project(":data-contract")
     implementation project(":data-core")
 
     // test

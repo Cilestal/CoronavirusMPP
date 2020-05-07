@@ -3,23 +3,23 @@ enableFeaturePreview('GRADLE_METADATA')
 
 // common
 include 'common-contract', 'common-core'
-project(':common-contract').projectDir = file('components/common/contract')
-project(':common-core').projectDir = file('components/common/core')
+project(':common-contract').projectDir = file('core/common/contract')
+project(':common-core').projectDir = file('core/common/core')
 
 // network
 include 'network-contract', 'network-core'
-project(':network-contract').projectDir = file('components/network/contract')
-project(':network-core').projectDir = file('components/network/core')
+project(':network-contract').projectDir = file('core/network/contract')
+project(':network-core').projectDir = file('core/network/core')
 
 // database
 include 'database-contract', 'database-core'
-project(':database-contract').projectDir = file('components/database/contract')
-project(':database-core').projectDir = file('components/database/core')
+project(':database-contract').projectDir = file('core/database/contract')
+project(':database-core').projectDir = file('core/database/core')
 
 // data
 include 'data-contract', 'data-core'
-project(':data-contract').projectDir = file('components/data/contract')
-project(':data-core').projectDir = file('components/data/core')
+project(':data-contract').projectDir = file('core/data/contract')
+project(':data-core').projectDir = file('core/data/core')
 
 include 'android_app'
 project(':android_app').projectDir = file('platform/android/app')

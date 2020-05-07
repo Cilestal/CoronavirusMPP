@@ -1,0 +1,26 @@
+package org.michaellang.data.di
+
+import org.kodein.di.Kodein
+import org.michaellang.common.DateTimeProvider
+import org.michaellang.common.annotation.RequiredBindings
+import org.michaellang.common.di.KodeinModuleHolder
+import org.michaellang.database.dao.CountryDao
+import org.michaellang.database.dao.CountrySummaryDao
+import org.michaellang.database.dao.GlobalSummaryDao
+import org.michaellang.network.NetworkService
+
+@RequiredBindings(
+    DateTimeProvider::class,
+    NetworkService::class,
+    CountryDao::class,
+    CountrySummaryDao::class,
+    GlobalSummaryDao::class
+)
+class DataCoreModule : KodeinModuleHolder {
+    override val module = Kodein.Module("data_core_module") {
+        import(DataCoreRepositoryModule().module)
+        import(DataCoreLocalDatasourceModule().module)
+        import(DataCoreRemoteDatasourceModule().module)
+        import(DataCoreMappersModule().module)
+    }
+}
