@@ -4,8 +4,8 @@ import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
-import org.michaellang.common.DateTimeProvider
 import org.michaellang.common.annotation.RequiredBindings
+import org.michaellang.common.provider.DateTimeProvider
 import org.michaellang.data.datasource.remote.mapper.RemoteDataSourceErrorMapper
 import org.michaellang.data.mapper.covid.local.LocalCountryDataMapper
 import org.michaellang.data.mapper.covid.local.LocalCountryEntityMapper

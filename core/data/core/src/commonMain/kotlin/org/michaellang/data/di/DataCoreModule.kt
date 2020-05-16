@@ -1,9 +1,9 @@
 package org.michaellang.data.di
 
 import org.kodein.di.Kodein
-import org.michaellang.common.DateTimeProvider
 import org.michaellang.common.annotation.RequiredBindings
 import org.michaellang.common.di.KodeinModuleHolder
+import org.michaellang.common.provider.DateTimeProvider
 import org.michaellang.database.dao.CountryDao
 import org.michaellang.database.dao.CountrySummaryDao
 import org.michaellang.database.dao.GlobalSummaryDao

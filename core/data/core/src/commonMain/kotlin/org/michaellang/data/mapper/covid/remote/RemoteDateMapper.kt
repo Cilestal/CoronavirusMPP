@@ -1,6 +1,6 @@
 package org.michaellang.data.mapper.covid.remote
 
-import org.michaellang.common.DateTimeProvider
+import org.michaellang.common.provider.DateTimeProvider
 import org.michaellang.data.mapper.Mapper
 import org.michaellang.data.repository.CovidRepository.Companion.DATE_FORMAT
 import org.michaellang.network.Const
