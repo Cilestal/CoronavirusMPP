@@ -1,1 +1,7 @@
-apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
+ext {
+    commonMain_dependencies = {
+        api project(":livedata")
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

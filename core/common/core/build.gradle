@@ -6,8 +6,8 @@ ext {
     }
 
     androidMain_dependencies = {
-        implementation appcompat
-        implementation kodeinAndroid
+        api appcompat
+        api kodeinAndroid
         api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
     }
 

@@ -10,7 +10,7 @@ def getClosureByNameOrEmpty(String name) {
 
 kotlin {
     targets {
-        jvm()
+        //jvm()
 
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")       \
                                     ? presets.iosArm64 : presets.iosX64
@@ -40,25 +40,25 @@ kotlin {
             }
         }
 
-        jvmMain {
-            dependsOn commonMain
-            dependencies {
-                implementation kotlinx_serialization_jvm
-                implementation kotlin_reflect
-            }
-        }
-
-        jvmTest {
-            dependsOn commonTest
-            dependencies {
-                jvm_test_array.each {
-                    implementation it
-                }
-            }
-            project.jvmTest {
-                useJUnitPlatform()
-            }
-        }
+//        jvmMain {
+//            dependsOn commonMain
+//            dependencies {
+//                implementation kotlinx_serialization_jvm
+//                implementation kotlin_reflect
+//            }
+//        }
+//
+//        jvmTest {
+//            dependsOn commonTest
+//            dependencies {
+//                jvm_test_array.each {
+//                    implementation it
+//                }
+//            }
+//            project.jvmTest {
+//                useJUnitPlatform()
+//            }
+//        }
 
         all {
             it.dependencies(getClosureByNameOrEmpty("${it.name}_dependencies"))
@@ -66,9 +66,9 @@ kotlin {
     }
 }
 
-afterEvaluate {
-    if (!project.hasProperty('test')) {
-        task test()
-    }
-    tasks.test.dependsOn jvmTest
-}
+//afterEvaluate {
+//    if (!project.hasProperty('test')) {
+//        task test()
+//    }
+//    tasks.test.dependsOn jvmTest
+//}

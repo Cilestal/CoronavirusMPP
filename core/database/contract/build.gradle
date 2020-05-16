@@ -4,7 +4,7 @@ ext {
     }
 }
 
-apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
 apply plugin: "com.squareup.sqldelight"
 
 sqldelight {

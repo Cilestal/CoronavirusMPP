@@ -1,0 +1,51 @@
+apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
+apply plugin: "com.squareup.sqldelight"
+def frameworkName = 'KotlinShared'
+
+kotlin {
+    final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")    \
+                                 ? presets.iosArm64 : presets.iosX64
+
+    targets {
+        fromPreset(iOSTarget, 'iOS') {
+            binaries {
+                framework(frameworkName)
+            }
+        }
+    }
+
+    sourceSets {
+        iOSMain {
+            dependsOn commonMain
+            dependencies {
+                implementation kodein
+
+                implementation project(':common-contract')
+                implementation project(':common-core')
+                implementation project(':data-core')
+                implementation project(':network-core')
+                implementation project(':database-core')
+            }
+        }
+    }
+}
+
+
+task packForXCode(type: Sync) {
+    final File frameworkDir = new File(rootProject.buildDir, "xcode-frameworks")
+    final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
+    final def framework = kotlin.targets.iOS.binaries.getFramework(frameworkName, mode)
+
+    inputs.property "mode", mode
+    dependsOn framework.linkTask
+
+    from { framework.outputFile.parentFile }
+    into frameworkDir
+
+    doLast {
+        new File(frameworkDir, 'gradlew').with {
+            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
+            setExecutable(true)
+        }
+    }
+}

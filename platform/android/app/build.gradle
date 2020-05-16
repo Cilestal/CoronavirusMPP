@@ -43,6 +43,8 @@ dependencies {
     implementation project(":database-core")
     implementation project(":data-contract")
     implementation project(":data-core")
+    implementation project(":splash-contract")
+    implementation project(":splash-core")
 
     // test
     testImplementation 'junit:junit:4.12'

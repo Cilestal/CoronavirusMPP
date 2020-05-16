@@ -1,0 +1,7 @@
+ext {
+    androidMain_dependencies = {
+        implementation lifecycle
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
