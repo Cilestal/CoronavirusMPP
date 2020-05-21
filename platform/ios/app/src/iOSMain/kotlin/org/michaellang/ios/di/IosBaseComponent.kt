@@ -8,9 +8,9 @@ abstract class IosBaseComponent(
     val kodein = Kodein.lazy {
         extend(parentKodein)
         import(IosCommonModule().module)
-        bind(this)
+        bind()
     }
 
-    abstract fun bind(builder: Kodein.MainBuilder)
+    abstract fun Kodein.MainBuilder.bind()
 
 }

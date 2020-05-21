@@ -1,6 +1,5 @@
 ext {
     commonMain_dependencies = {
-        implementation project(':common-contract')
         implementation project(':common-core')
         implementation project(":data-contract")
         implementation project(":network-contract")

@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.MutableLiveData as AndroidMutableLiveData
 
-actual class MutableLiveData<T> actual constructor(
+actual class MutableLiveData<T : Any> actual constructor(
     initValue: T?
 ) : LiveData<T> {
 

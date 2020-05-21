@@ -1,9 +1,8 @@
 package org.michaellang.livedata
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 
-actual interface LiveData<T> {
+actual interface LiveData<T : Any> {
     fun observe(owner: LifecycleOwner, observer: (T) -> Unit)
     fun removeObservers(owner: LifecycleOwner)
 

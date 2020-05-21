@@ -1,7 +1,7 @@
 package org.michaellang.livedata
 
 //todo check impl
-actual class MutableLiveData<T> actual constructor(
+actual class MutableLiveData<T : Any> actual constructor(
     initValue: T?
 ) : LiveData<T> {
 
@@ -10,6 +10,7 @@ actual class MutableLiveData<T> actual constructor(
 
     override fun observe(observer: (T) -> Unit) {
         observers.add(observer)
+        value?.let(observer)
     }
 
     override fun removeObservers() {
