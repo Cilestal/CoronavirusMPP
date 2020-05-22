@@ -36,10 +36,20 @@ include 'splash-contract', 'splash-core'
 project(':splash-contract').projectDir = file('features/splash/contract')
 project(':splash-core').projectDir = file('features/splash/core')
 
-// statistic
-include 'statistic-contract', 'statistic-core'
-project(':statistic-contract').projectDir = file('features/statistics/contract')
-project(':statistic-core').projectDir = file('features/statistics/core')
+// summary
+include 'summary-contract', 'summary-core'
+project(':summary-contract').projectDir = file('features/summary/contract')
+project(':summary-core').projectDir = file('features/summary/core')
+
+// news
+include 'news-contract', 'news-core'
+project(':news-contract').projectDir = file('features/news/contract')
+project(':news-core').projectDir = file('features/news/core')
+
+// home
+include 'home-contract', 'home-core'
+project(':home-contract').projectDir = file('features/home/contract')
+project(':home-core').projectDir = file('features/home/core')
 
 //endregion
 

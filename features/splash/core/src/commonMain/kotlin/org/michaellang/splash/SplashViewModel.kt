@@ -2,20 +2,22 @@ package org.michaellang.splash
 
 import kotlinx.coroutines.CoroutineScope
 import org.michaellang.common.base.BaseViewModelImpl
+import org.michaellang.home.HomeNavigator
 import org.michaellang.livedata.MutableLiveData
 
-class SplashViewModel(
+class SplashViewModelImpl(
+    private val homeNavigator: HomeNavigator,
     coroutineScope: CoroutineScope
-) : BaseViewModelImpl(coroutineScope), SplashContract.ViewModel, CoroutineScope by coroutineScope {
+) : BaseViewModelImpl(coroutineScope), SplashViewModel, CoroutineScope by coroutineScope {
 
     override val startAnimationLiveData by lazy { MutableLiveData<Long>() }
 
     override fun start() {
-        startAnimationLiveData.postValue(ANIMATION_SPEED)
+        startAnimationLiveData.setValue(ANIMATION_SPEED)
     }
 
     override fun onAnimationEnd() {
-        //todo navigation
+        homeNavigator.goToHomeScreen()
     }
 
     companion object {

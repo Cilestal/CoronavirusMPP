@@ -24,6 +24,7 @@ dependencies {
     implementation appcompat
     implementation coreCtx
     implementation constraintlayout
+    navigation.forEach { implementation it}
 
     implementation kotlinx_serialization_jvm
 
@@ -45,6 +46,12 @@ dependencies {
     implementation project(":data-core")
     implementation project(":splash-contract")
     implementation project(":splash-core")
+    implementation project(":home-contract")
+    implementation project(":home-core")
+    implementation project(":news-contract")
+    implementation project(":news-core")
+    implementation project(":summary-contract")
+    implementation project(":summary-core")
 
     // test
     testImplementation 'junit:junit:4.12'

@@ -1,9 +1,9 @@
 package org.michaellang.livedata
 
-expect class MutableLiveData<T : Any>(
+expect open class MutableLiveData<T : Any>(
     initValue: T? = null
 ) : LiveData<T> {
-    fun postValue(value: T)
+    open fun postValue(value: T)
 
-    fun setValue(value: T)
+    open fun setValue(value: T)
 }

@@ -20,6 +20,7 @@
 		4C773A69247171AC00AE91F7 /* KotlinShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C773A67247171AC00AE91F7 /* KotlinShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C773A6C247174C300AE91F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C773A6B247174C300AE91F7 /* Foundation.framework */; };
 		4C773A6E247175B200AE91F7 /* KotlinShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C773A6D247175B200AE91F7 /* KotlinShared.framework */; };
+		4CFE01BB2476CD6C00403FB3 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE01BA2476CD6C00403FB3 /* ViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		4C773A67247171AC00AE91F7 /* KotlinShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KotlinShared.framework; path = "../../../build/xcode-frameworks/KotlinShared.framework"; sourceTree = "<group>"; };
 		4C773A6B247174C300AE91F7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4C773A6D247175B200AE91F7 /* KotlinShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KotlinShared.framework; path = "../../../build/xcode-frameworks/KotlinShared.framework"; sourceTree = "<group>"; };
+		4CFE01BA2476CD6C00403FB3 /* ViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				4C773A59247170F300AE91F7 /* Assets.xcassets */,
 				4C773A5B247170F300AE91F7 /* LaunchScreen.storyboard */,
 				4C773A5E247170F300AE91F7 /* Info.plist */,
+				4CFE01BA2476CD6C00403FB3 /* ViewControllerTest.swift */,
 			);
 			path = covid;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			files = (
 				4C773A55247170F000AE91F7 /* ViewController.swift in Sources */,
 				4C773A51247170F000AE91F7 /* AppDelegate.swift in Sources */,
+				4CFE01BB2476CD6C00403FB3 /* ViewControllerTest.swift in Sources */,
 				4C26155C247178C400BF8EB7 /* DateTimeProviderImpl.swift in Sources */,
 				4C773A53247170F000AE91F7 /* SceneDelegate.swift in Sources */,
 				4C26155F2471846300BF8EB7 /* UIViewControllerExtensions.swift in Sources */,

@@ -2,6 +2,7 @@ ext {
     commonMain_dependencies = {
         implementation project(':common-core')
         implementation project(':splash-contract')
+        implementation project(':home-contract')
     }
 }
 

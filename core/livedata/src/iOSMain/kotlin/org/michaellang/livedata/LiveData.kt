@@ -1,6 +1,7 @@
 package org.michaellang.livedata
 
-actual interface LiveData<T : Any> {
-    actual fun observe(observer: (T) -> Unit)
-    actual fun removeObservers()
+actual abstract class LiveData<T : Any> {
+    actual abstract fun observe(observer: (T) -> Unit)
+    actual abstract fun removeObservers()
+    actual abstract fun hasActiveObservers(): Boolean
 }

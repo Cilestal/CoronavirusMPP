@@ -15,8 +15,6 @@ kotlin {
                     export(project(":livedata"))
                     export(project(":common-contract"))
                     export(project(":splash-contract"))
-
-                    freeCompilerArgs = freeCompilerArgs.plus("-Xobjc-generics")
                 }
             }
         }

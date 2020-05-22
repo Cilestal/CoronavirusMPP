@@ -1,0 +1,13 @@
+ext {
+    commonMain_dependencies = {
+        implementation project(':common-core')
+        implementation project(':summary-contract')
+    }
+
+    androidMain_dependencies = {
+        navigation.forEach { implementation it}
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
+

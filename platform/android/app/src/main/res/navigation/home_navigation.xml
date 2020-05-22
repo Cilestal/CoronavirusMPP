@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/navigation_summary_list"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/navigation_summary_list"
+        android:name="org.michaellang.summary.TestFragment"
+        android:label="Summary"
+        tools:layout="@layout/fragment_summary_list" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="org.michaellang.news.NewsTestFragment"
+        android:label="News"
+        tools:layout="@layout/fragment_news" />
+
+    <action
+        android:id="@+id/testAc2"
+        app:destination="@id/navigation_summary_list"
+        app:launchSingleTop="true" />
+
+    <action
+        android:id="@+id/testAc3"
+        app:destination="@id/navigation_news"
+        app:launchSingleTop="true" />
+</navigation>

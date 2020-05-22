@@ -26,22 +26,25 @@ class ViewController: UIViewController {
     
     
     private func test() {
-        //self.navigationController?.popViewController(animated: false)
-        print("TEST: open")
-        let signInStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.openAsRoot(viewController: signInStoryboard.instantiateViewController(withIdentifier: "ViewController2"))
+         self.navigationController?.popViewController(animated: false)
+        self.dismiss(animated: true) {
+                print("TEST: open")
+            
+            let signInStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                   if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    let vc = signInStoryboard.instantiateViewController(withIdentifier: "ViewController2")
+                       appDelegate.openAsRoot(viewController: vc)
+               }
         }
+       
+    
+       
     }
     
     private func observeViewModel() {
-        self.viewModel?.startAnimationLiveData.observe(observer: { (<#Any#>) in
-            <#code#>
-        })
-        
         self.viewModel?.startAnimationLiveData.observe {
-            let duration = Double($0 as! Int64) / 1_000
-           
+            let duration = Double(truncating: $0) / 1_000
+        
             UIView.animate(withDuration: duration, animations: {
                 self.titleLabel.alpha = 1.0
             })

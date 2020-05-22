@@ -1,9 +1,9 @@
 package org.michaellang.livedata
 
 //todo check impl
-actual class MutableLiveData<T : Any> actual constructor(
+actual open class MutableLiveData<T : Any> actual constructor(
     initValue: T?
-) : LiveData<T> {
+) : LiveData<T>() {
 
     private var value: T? = initValue
     private val observers = mutableListOf<(T) -> Unit>()
@@ -17,15 +17,22 @@ actual class MutableLiveData<T : Any> actual constructor(
         observers.clear()
     }
 
-    actual fun postValue(value: T) {
+    actual open fun postValue(value: T) {
         setValue(value)
         observers.forEach {
             it(value)
         }
     }
 
-    actual fun setValue(value: T) {
+    actual open fun setValue(value: T) {
         this.value = value
+        observers.forEach {
+            it(value)
+        }
+    }
+
+    override fun hasActiveObservers(): Boolean {
+        return observers.isNotEmpty()
     }
 
 }

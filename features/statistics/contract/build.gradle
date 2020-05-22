@@ -1,7 +1,0 @@
-ext {
-    commonMain_dependencies = {
-        implementation project(":data-contract")
-    }
-}
-
-apply from: rootProject.file("${rootDir}/config/common-setup.gradle")

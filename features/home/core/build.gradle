@@ -1,0 +1,16 @@
+ext {
+    commonMain_dependencies = {
+        implementation project(':common-core')
+        implementation project(':home-contract')
+        implementation project(':summary-contract')
+        implementation project(':news-contract')
+    }
+
+    androidMain_dependencies = {
+        implementation constraintlayout
+        navigation.forEach { implementation it}
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
+

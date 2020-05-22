@@ -10,6 +10,5 @@ import org.michaellang.splash.di.SplashCoreModule
 class SplashAndroidModule {
     val module = Kodein.Module("splash_android_module") {
         import(SplashCoreModule().module)
-
     }
 }

@@ -1,9 +1,0 @@
-ext {
-    commonMain_dependencies = {
-        implementation project(':statistic-contract')
-        implementation project(':common-core')
-    }
-}
-
-apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
-

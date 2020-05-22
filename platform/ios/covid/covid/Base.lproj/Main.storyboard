@@ -37,10 +37,11 @@
             </objects>
             <point key="canvasLocation" x="139" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller2-->
         <scene sceneID="7yd-RI-6rY">
             <objects>
-                <viewController storyboardIdentifier="ViewController2" id="XYz-Yy-6i4" customClass="ViewController" customModule="covid" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDE-Ip-xW0" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ViewController2" id="XYz-Yy-6i4" customClass="ViewController2" customModule="covid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wj7-Yn-bM6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,6 +52,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cF-KF-G9h">
+                                <rect key="frame" x="192" y="421" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -63,7 +69,6 @@
                         <outlet property="titleLabel" destination="hUv-87-kGI" id="hsw-Km-z0j"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NDE-Ip-xW0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826" y="101"/>
         </scene>

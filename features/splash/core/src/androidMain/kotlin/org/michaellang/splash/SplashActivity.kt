@@ -10,7 +10,7 @@ import org.michaellang.common.extensions.onComplete
 
 class SplashActivity : BaseActivity() {
     override val activityModule = SplashAndroidModule().module
-    private val viewModel by instance<SplashContract.ViewModel>()
+    private val viewModel by instance<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +22,15 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.startAnimationLiveData.observe(this) { duration ->
-            splashTitle.visibility = View.VISIBLE
-            AlphaAnimation(0f, 1f).apply {
-                onComplete(viewModel::onAnimationEnd)
-                this.duration = duration
-                splashTitle.animation = this
-            }
+        viewModel.startAnimationLiveData.observe(this, ::startAnimation)
+    }
+
+    private fun startAnimation(duration: Long) {
+        splashTitle.visibility = View.VISIBLE
+        AlphaAnimation(0f, 1f).apply {
+            onComplete(viewModel::onAnimationEnd)
+            this.duration = duration
+            splashTitle.animation = this
         }
     }
 
