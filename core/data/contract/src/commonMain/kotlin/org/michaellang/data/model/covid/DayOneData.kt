@@ -6,5 +6,5 @@ data class DayOneData(
     val totalConfirmed: Long,
     val totalDeaths: Long,
     val totalRecovered: Long,
-    val date: String
+    val date: Long
 )

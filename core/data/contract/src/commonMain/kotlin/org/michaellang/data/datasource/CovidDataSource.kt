@@ -15,6 +15,7 @@ interface CovidDataSource {
 
         fun saveSummaries(list: List<CountrySummaryData>)
         fun getSummary(country: String, date: String): CountrySummaryData?
+        fun getCountriesSummary(date: String): List<CountrySummaryData>
 
         fun saveGlobalSummary(data: GlobalSummaryData)
         fun getGlobalSummary(date: String): GlobalSummaryData?

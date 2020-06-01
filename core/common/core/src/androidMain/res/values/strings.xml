@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Covid 2020</string>
 
-    <!-- home -->
-    <string name="home_bottom_menu_news">News</string>
-    <string name="home_bottom_menu_summary_list">Summary</string>
 
 </resources>

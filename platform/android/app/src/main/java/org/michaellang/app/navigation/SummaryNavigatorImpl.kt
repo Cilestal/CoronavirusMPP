@@ -1,14 +1,19 @@
 package org.michaellang.app.navigation
 
-import androidx.navigation.NavController
-import org.michaellang.app.R
-import org.michaellang.summary.SummaryNavigator
+import androidx.fragment.app.FragmentManager
+import org.michaellang.common.extensions.navigateToItem
+import org.michaellang.home.HomeBottomMenuState
+import org.michaellang.summary.presentation.SummaryNavigator
 
 class SummaryNavigatorImpl(
-    private val navController: NavController
+    private val fragmentManager: FragmentManager
 ) : SummaryNavigator {
 
     override fun goToSummaryScreen() {
-        navController.navigate(R.id.testAc2)
+        navigateToItem(
+            fragmentManager,
+            HomeBottomMenuState.values().size,
+            HomeBottomMenuState.SUMMARY.index
+        )
     }
 }

@@ -12,12 +12,16 @@ class SplashViewModelImpl(
 
     override val startAnimationLiveData by lazy { MutableLiveData<Long>() }
 
-    override fun start() {
+    override fun onCreate() {
         startAnimationLiveData.setValue(ANIMATION_SPEED)
     }
 
     override fun onAnimationEnd() {
         homeNavigator.goToHomeScreen()
+    }
+
+    override fun clear() {
+        startAnimationLiveData.removeObservers()
     }
 
     companion object {

@@ -15,6 +15,9 @@ kotlin {
                     export(project(":livedata"))
                     export(project(":common-contract"))
                     export(project(":splash-contract"))
+                    export(project(":home-contract"))
+                    export(project(":summary-contract"))
+                    export(project(":news-contract"))
                 }
             }
         }
@@ -29,12 +32,18 @@ kotlin {
                 api project(':livedata')
                 api project(':common-contract')
                 api project(':splash-contract')
+                api project(':home-contract')
+                api project(':summary-contract')
+                api project(':news-contract')
 
                 implementation project(':common-core')
                 implementation project(':splash-core')
                 implementation project(':data-core')
                 implementation project(':network-core')
                 implementation project(':database-core')
+                implementation project(':home-core')
+                implementation project(':summary-core')
+                implementation project(':news-core')
             }
         }
     }

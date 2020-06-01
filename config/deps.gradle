@@ -46,6 +46,9 @@ ext {
     // okhttp
     okhttp = dependencies.create("com.squareup.okhttp3:okhttp:$okhttp_version")
 
+    // moko
+    moko_resources = dependencies.create("dev.icerock.moko:resources:$moko_resources_generator_version")
+
     // test
     mockk = dependencies.create("io.mockk:mockk-common:$mockk_version")
     mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version") {

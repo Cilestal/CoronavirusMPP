@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import org.michaellang.common.base.BaseViewModelImpl
 import org.michaellang.livedata.MutableLiveData
 import org.michaellang.news.NewsNavigator
-import org.michaellang.summary.SummaryNavigator
+import org.michaellang.summary.presentation.SummaryNavigator
 
 class HomeViewModelImpl(
     private val summaryNavigator: SummaryNavigator,

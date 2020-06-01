@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
 android {
     defaultConfig {
-        applicationId "org.michaellang.mviproject"
+        applicationId "org.michaellang.covid"
     }
 
     applicationVariants.all { variant ->
@@ -30,7 +31,7 @@ dependencies {
 
     // glide
     implementation glide
-    annotationProcessor glideCompiler
+    kapt glideCompiler
 
     // kodein
     implementation kodeinJvm

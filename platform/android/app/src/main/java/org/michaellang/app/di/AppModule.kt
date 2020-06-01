@@ -16,9 +16,10 @@ class AppModule(
     override val kodein: Kodein by Kodein.lazy {
         import(androidXModule(app))
         import(JsonModule().module)
-        import(AndroidProviderModule().module)
+        import(AndroidProviderModule(app).module)
         import(AndroidDataModule(app).module)
         import(AndroidNavigationModule().module)
+        import(AndroidGlideModule().module)
     }
 
     operator fun getValue(app: App, property: KProperty<*>): Kodein {

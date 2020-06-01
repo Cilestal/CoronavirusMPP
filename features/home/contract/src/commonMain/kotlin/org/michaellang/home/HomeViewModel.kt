@@ -5,8 +5,6 @@ import org.michaellang.livedata.LiveData
 
 interface HomeViewModel : BaseViewModel {
     val bottomMenuStateLiveData: LiveData<HomeBottomMenuState>
-
-    fun onCreate()
     fun onSummaryTabClicked()
     fun onNewsTabClicked()
 }

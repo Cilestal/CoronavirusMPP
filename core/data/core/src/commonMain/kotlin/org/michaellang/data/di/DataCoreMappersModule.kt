@@ -37,16 +37,16 @@ internal class DataCoreMappersModule {
             LocalCountryDataMapper()
         }
         bind<LocalCountrySummaryEntityMapper>() with singleton {
-            LocalCountrySummaryEntityMapper()
+            LocalCountrySummaryEntityMapper(instance())
         }
         bind<LocalCountrySummaryDataMapper>() with singleton {
-            LocalCountrySummaryDataMapper()
+            LocalCountrySummaryDataMapper(instance())
         }
         bind<LocalGlobalSummaryEntityMapper>() with singleton {
-            LocalGlobalSummaryEntityMapper()
+            LocalGlobalSummaryEntityMapper(instance())
         }
         bind<LocalGlobalSummaryDataMapper>() with singleton {
-            LocalGlobalSummaryDataMapper()
+            LocalGlobalSummaryDataMapper(instance())
         }
     }
 

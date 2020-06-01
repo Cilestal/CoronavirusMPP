@@ -2,10 +2,13 @@ ext {
     commonMain_dependencies = {
         implementation project(':common-core')
         implementation project(':summary-contract')
+        implementation project(':data-contract')
     }
 
     androidMain_dependencies = {
         navigation.forEach { implementation it}
+        implementation constraintlayout
+        implementation glide
     }
 }
 

@@ -9,5 +9,5 @@ data class CountrySummaryData(
     val totalDeaths: Long,
     val newRecovered: Long,
     val totalRecovered: Long,
-    val date: String
+    val date: Long
 )

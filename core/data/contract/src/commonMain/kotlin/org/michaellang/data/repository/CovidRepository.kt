@@ -9,12 +9,9 @@ import org.michaellang.data.model.covid.GlobalSummaryData
 interface CovidRepository {
     suspend fun getCountryList(): DataResult<List<CountryData>>
     suspend fun getGlobalSummary(): DataResult<GlobalSummaryData>
+    suspend fun getCountriesSummaryData(): DataResult<List<CountrySummaryData>>
     suspend fun getCountrySummaryData(country: String): DataResult<CountrySummaryData>
     suspend fun getDayOneData(country: String): DataResult<List<DayOneData>>
 
     suspend fun clearCache()
-
-    companion object {
-        const val DATE_FORMAT = "yyyy-MM-dd"
-    }
 }

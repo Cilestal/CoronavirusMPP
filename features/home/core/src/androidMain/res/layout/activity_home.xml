@@ -38,15 +38,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/home_bottom_nav_menu" />
 
-    <fragment
-        android:id="@+id/navHostFragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-        app:layout_constraintTop_toBottomOf="@+id/appbar"
-        tools:ignore="FragmentTagUsage" />
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

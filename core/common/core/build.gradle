@@ -9,6 +9,9 @@ ext {
         api appcompat
         api kodeinAndroid
         api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+
+        implementation lifecycle
+        navigation.forEach { implementation it }
     }
 
     jvmMain_dependencies = {
@@ -21,3 +24,10 @@ ext {
 }
 
 apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
+apply plugin: "dev.icerock.mobile.multiplatform-resources"
+
+multiplatformResources {
+    multiplatformResourcesPackage = "org.michaellang.common"
+    iosBaseLocalizationRegion = "en"
+    multiplatformResourcesSourceSet = "commonMain"
+}

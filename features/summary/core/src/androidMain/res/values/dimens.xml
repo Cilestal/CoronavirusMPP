@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_country_summary_flag_width">40dp</dimen>
+    <dimen name="item_country_summary_flag_height">32dp</dimen>
+    <dimen name="item_country_icon_size">16dp</dimen>
+
+</resources>

@@ -7,5 +7,5 @@ data class GlobalSummaryData(
     val totalDeaths: Long,
     val newRecovered: Long,
     val totalRecovered: Long,
-    val date: String
+    val date: Long
 )

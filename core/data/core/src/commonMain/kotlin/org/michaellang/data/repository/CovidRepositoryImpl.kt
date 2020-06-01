@@ -1,6 +1,7 @@
 package org.michaellang.data.repository
 
 import org.michaellang.common.provider.DateTimeProvider
+import org.michaellang.data.Const.DATE_FORMAT
 import org.michaellang.data.datasource.CovidDataSource
 import org.michaellang.data.model.DataResult
 import org.michaellang.data.model.covid.CountryData
@@ -8,7 +9,6 @@ import org.michaellang.data.model.covid.CountrySummaryData
 import org.michaellang.data.model.covid.DayOneData
 import org.michaellang.data.model.covid.GlobalSummaryData
 import org.michaellang.data.model.covid.SummaryData
-import org.michaellang.data.repository.CovidRepository.Companion.DATE_FORMAT
 import org.michaellang.data.toDbResult
 import org.michaellang.data.toNetworkResult
 
@@ -17,6 +17,8 @@ class CovidRepositoryImpl(
     private val remote: CovidDataSource.Remote,
     private val dateProvider: DateTimeProvider
 ) : CovidRepository {
+
+    private val currentDate = dateProvider.getCurrentDateTime(DATE_FORMAT)
 
     override suspend fun getCountryList(): DataResult<List<CountryData>> {
         getLocalCountryList()?.let {
@@ -39,7 +41,7 @@ class CovidRepositoryImpl(
     }
 
     override suspend fun getGlobalSummary(): DataResult<GlobalSummaryData> {
-        local.getGlobalSummary(currentData())?.let {
+        local.getGlobalSummary(currentDate)?.let {
             return it.toDbResult()
         }
 
@@ -47,7 +49,7 @@ class CovidRepositoryImpl(
     }
 
     override suspend fun getCountrySummaryData(country: String): DataResult<CountrySummaryData> {
-        local.getSummary(country, currentData())?.let {
+        local.getSummary(country, currentDate)?.let {
             return it.toDbResult()
         }
 
@@ -70,10 +72,19 @@ class CovidRepositoryImpl(
         return summary
     }
 
+    override suspend fun getCountriesSummaryData(): DataResult<List<CountrySummaryData>> {
+        local.getCountriesSummary(currentDate)
+            .takeIf { it.isNotEmpty() }
+            ?.let {
+                return it.toDbResult()
+            }
+
+        return loadRemoteSummaryData().countries
+            .toNetworkResult()
+    }
+
     override suspend fun clearCache() {
         local.clearCache()
     }
-
-    private fun currentData() = dateProvider.getCurrentDateTime(DATE_FORMAT)
 
 }

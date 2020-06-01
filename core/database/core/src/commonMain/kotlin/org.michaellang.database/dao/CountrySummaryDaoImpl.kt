@@ -17,6 +17,10 @@ class CountrySummaryDaoImpl(
         return queries.getSummary(country, date).executeAsOneOrNull()
     }
 
+    override fun countrySummaries(date: String): List<CountrySummaryEntity> {
+        return queries.countrySummaries(date).executeAsList()
+    }
+
     override fun clear() {
         queries.clear()
     }

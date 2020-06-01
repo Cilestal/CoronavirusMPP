@@ -62,6 +62,13 @@ internal class CovidDataSourceLocal(
         }
     }
 
+    override fun getCountriesSummary(date: String): List<CountrySummaryData> {
+        runOrThrow {
+            return countrySummaryDao.countrySummaries(date)
+                .map(countrySummaryDataMapper::map)
+        }
+    }
+
     override fun saveGlobalSummary(data: GlobalSummaryData) {
         runOrThrow {
             globalSummaryEntityMapper.map(data)

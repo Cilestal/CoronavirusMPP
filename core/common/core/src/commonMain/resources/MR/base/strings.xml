@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <!-- splash -->
+    <string name="splash_title">Covid MPP 2020</string>
+
+    <!-- common -->
+    <string name="search__error_state_text">Can’t reach the server. Please check the connection and
+        try again
+    </string>
+
+    <!-- home -->
+    <string name="home_bottom_menu_news">News</string>
+    <string name="home_bottom_menu_summary_list">Summary</string>
+
+    <!-- summary list -->
+    <string name="global_summary_header_title">Global Summary</string>
+    <string name="global_summary_new_confirmed_title">New confirmed:</string>
+    <string name="global_summary_total_confirmed_title">Total confirmed:</string>
+    <string name="global_summary_new_deaths_title">New deaths:</string>
+    <string name="global_summary_total_deaths_title">Total deaths:</string>
+    <string name="global_summary_new_recovered_title">New recovered:</string>
+    <string name="global_summary_total_recovered_title">Total recovered:</string>
+
+    <string name="country_summary_header_title">Countries</string>
+
+
+    <string name="menu_item_sort_title">Sort</string>
+    <string name="menu_sort_total_death">Total Death</string>
+    <string name="menu_sort_total_confirmed">Total Confirmed</string>
+    <string name="menu_sort_total_recovered">Total Recovered</string>
+</resources>

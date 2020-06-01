@@ -6,7 +6,7 @@ import org.michaellang.database.dao.IosDatabaseModule
 import org.michaellang.network.di.IosNetworkModule
 
 internal class IosDataModule {
-    val module = Kodein.Module("android_data_module") {
+    val module = Kodein.Module("ios_data_module") {
         import(IosDatabaseModule().module)
         import(IosNetworkModule().module)
         import(DataCoreModule().module)

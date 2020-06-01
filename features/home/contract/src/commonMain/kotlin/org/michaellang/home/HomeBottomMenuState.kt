@@ -1,5 +1,6 @@
 package org.michaellang.home
 
-enum class HomeBottomMenuState {
-    SUMMARY, NEWS
+enum class HomeBottomMenuState(val index: Int) {
+    SUMMARY(0),
+    NEWS(1)
 }

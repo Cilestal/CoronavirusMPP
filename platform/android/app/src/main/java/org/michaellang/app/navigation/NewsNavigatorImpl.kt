@@ -1,14 +1,19 @@
 package org.michaellang.app.navigation
 
-import androidx.navigation.NavController
-import org.michaellang.app.R
+import androidx.fragment.app.FragmentManager
+import org.michaellang.common.extensions.navigateToItem
+import org.michaellang.home.HomeBottomMenuState
 import org.michaellang.news.NewsNavigator
 
 class NewsNavigatorImpl(
-    private val navController: NavController
+    private val fragmentManager: FragmentManager
 ) : NewsNavigator {
 
     override fun goToNewsScreen() {
-        navController.navigate(R.id.testAc3)
+        navigateToItem(
+            fragmentManager,
+            HomeBottomMenuState.values().size,
+            HomeBottomMenuState.NEWS.index
+        )
     }
 }

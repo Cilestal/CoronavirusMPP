@@ -6,6 +6,5 @@ import org.michaellang.livedata.LiveData
 interface SplashViewModel : BaseViewModel {
     val startAnimationLiveData: LiveData<Long>
 
-    fun start()
     fun onAnimationEnd()
 }

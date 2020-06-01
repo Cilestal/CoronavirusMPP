@@ -2,6 +2,10 @@ ext {
     androidMain_dependencies = {
         implementation lifecycle
     }
+
+    iOSMain_dependencies = {
+        api "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$kotlin_coroutines_version"
+    }
 }
 
 apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

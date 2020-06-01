@@ -9,7 +9,7 @@ import org.michaellang.common.base.BaseActivity
 import org.michaellang.common.extensions.onComplete
 
 class SplashActivity : BaseActivity() {
-    override val activityModule = SplashAndroidModule().module
+    override val activityModule = SplashAndroidModule(this).module
     private val viewModel by instance<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity() {
 
         observeViewModel()
 
-        viewModel.start()
+        viewModel.onCreate()
     }
 
     private fun observeViewModel() {

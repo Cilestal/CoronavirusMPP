@@ -1,6 +1,7 @@
 ext {
     commonMain_dependencies = {
         api project(":livedata")
+        api moko_resources
     }
 }
 

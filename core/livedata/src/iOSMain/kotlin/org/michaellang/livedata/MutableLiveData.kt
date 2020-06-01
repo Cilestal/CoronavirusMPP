@@ -1,38 +1,57 @@
 package org.michaellang.livedata
 
-//todo check impl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.native.ref.WeakReference
+
+@OptIn(ExperimentalCoroutinesApi::class, ObsoleteCoroutinesApi::class)
 actual open class MutableLiveData<T : Any> actual constructor(
     initValue: T?
 ) : LiveData<T>() {
 
-    private var value: T? = initValue
-    private val observers = mutableListOf<(T) -> Unit>()
+    private var ch = BroadcastChannel<T>(CONFLATED)
+    private var scope = CoroutineScope(CommonDispatchers.IO)
+    private val receivers = mutableListOf<ReceiveChannel<T>>()
+
+    init {
+        initValue?.let(::postValue)
+    }
 
     override fun observe(observer: (T) -> Unit) {
-        observers.add(observer)
-        value?.let(observer)
+        val weakObserver = WeakReference(observer)
+
+        scope.launch {
+            ch.openSubscription()
+                .also { receivers.add(it) }
+                .consumeEach {
+                    withContext(CommonDispatchers.Main) {
+                        weakObserver.get()?.invoke(it)
+                    }
+                }
+        }
     }
 
     override fun removeObservers() {
-        observers.clear()
+        receivers.forEach { it.cancel() }
     }
 
     actual open fun postValue(value: T) {
-        setValue(value)
-        observers.forEach {
-            it(value)
-        }
+        ch.offer(value)
     }
 
     actual open fun setValue(value: T) {
-        this.value = value
-        observers.forEach {
-            it(value)
-        }
+        ch.offer(value)
     }
 
     override fun hasActiveObservers(): Boolean {
-        return observers.isNotEmpty()
+        return receivers.isNotEmpty()
     }
 
 }
