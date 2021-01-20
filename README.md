@@ -22,3 +22,7 @@ Kotlin Multiplatform: Android + iOS
 
 // iOS
 * Swift UI
+
+# Multi Module Architecture
+
+<img src="https://raw.githubusercontent.com/cilestal/CoronavirusMPP/master/example/project.dot.png" align = "middle" height = "800" alt="Animated">
