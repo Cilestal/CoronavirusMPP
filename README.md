@@ -13,12 +13,17 @@ Kotlin Multiplatform: Android + iOS
 * Ktor
 * LiveData
 * SqlDelight
-* Kotlinx serialization
+* kotlinx.serialization
 * Moko resources
+* Coroutines
 
 // Android
 * Android navigation component
 * Glide
+* Kodein Andorid
+
+* Junit 5
+* Mockk
 
 // iOS
 * Swift UI
