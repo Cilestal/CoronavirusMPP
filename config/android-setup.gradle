@@ -9,6 +9,21 @@ android {
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        ignoreWarnings true
+        quiet true
     }
 
     buildTypes {
@@ -26,4 +41,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        pickFirst 'META-INF/*.kotlin_module'
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
 }

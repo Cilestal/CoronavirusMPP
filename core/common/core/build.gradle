@@ -1,0 +1,24 @@
+ext {
+    commonMain_dependencies = {
+        api project(':common-contract')
+        api coroutines
+        api kodein
+    }
+
+    androidMain_dependencies = {
+        api appcompat
+        api kodeinAndroid
+        api lifecycle
+        navigation.forEach { api it }
+    }
+
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
+apply plugin: "dev.icerock.mobile.multiplatform-resources"
+
+multiplatformResources {
+    multiplatformResourcesPackage = "org.michaellang.common"
+    iosBaseLocalizationRegion = "en"
+    multiplatformResourcesSourceSet = "commonMain"
+}

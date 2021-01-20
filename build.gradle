@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url = "https://dl.bintray.com/icerockdev/plugins" }
     }
 
     dependencies {
@@ -11,8 +12,11 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         classpath "com.squareup.sqldelight:gradle-plugin:$sqldelight_version"
+        classpath "dev.icerock.moko:resources-generator:$moko_resources_generator_version"
     }
 }
+
+apply from: file('config/dependencyGraph.gradle')
 
 allprojects {
     apply from: rootProject.file("${rootDir}/config/deps.gradle")
@@ -21,6 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url = "https://dl.bintray.com/icerockdev/moko" }
     }
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

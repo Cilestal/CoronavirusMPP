@@ -1,0 +1,25 @@
+ext {
+    commonMain_dependencies = {
+        implementation project(':common-core')
+        implementation project(":network-contract")
+
+        implementation "io.ktor:ktor-client-core:$ktor_version"
+        implementation "io.ktor:ktor-client-logging:$ktor_version"
+        implementation "io.ktor:ktor-client-serialization:$ktor_version"
+    }
+
+    iOSMain_dependencies = {
+        implementation "io.ktor:ktor-client-ios:$ktor_version"
+    }
+
+    androidTest_dependencies = {
+        implementation "io.ktor:ktor-client-mock-jvm:$ktor_version"
+    }
+
+    androidMain_dependencies = {
+        implementation okhttp
+        implementation "io.ktor:ktor-client-okhttp:$ktor_version"
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

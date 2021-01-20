@@ -1,14 +1,30 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'com.android.library'
 
+//todo merge with common-setup
 apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
-def getClosureByNameOrEmpty(String name) {
-    if (this.properties.containsKey(name)) {
-        return this.properties.find { it.key == name }.value
-    } else {
-        return {}
+android {
+    sourceSets {
+        main {
+            setRoot('src/androidMain')
+        }
+        release {
+            setRoot('src/androidMainRelease')
+        }
+        debug {
+            setRoot('src/androidMainDebug')
+        }
+        test {
+            setRoot('src/androidTest')
+        }
+        testRelease {
+            setRoot('src/androidTestRelease')
+        }
+        testDebug {
+            setRoot('src/androidTestDebug')
+        }
     }
 }
 
@@ -20,12 +36,15 @@ kotlin {
     sourceSets {
         androidMain {
             dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("androidDependencyGroup"))
+        }
 
+        androidTest {
+            dependsOn commonMain
             dependencies {
-                implementation kotlinx_serialization_jvm
+                jvm_test_array.each {
+                    implementation it
+                }
             }
         }
     }
 }
-

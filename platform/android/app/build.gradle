@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
 android {
     defaultConfig {
-        applicationId "org.michaellang.mviproject"
+        applicationId "org.michaellang.covid"
     }
 
     applicationVariants.all { variant ->
@@ -18,22 +18,46 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation kotlin
+    implementation kotlin_stdlib_common
 
     // androidx
     implementation appcompat
     implementation coreCtx
     implementation constraintlayout
+    navigation.forEach { implementation it }
+
+    implementation kotlinx_serialization
 
     // glide
     implementation glide
-    annotationProcessor glideCompiler
+    kapt glideCompiler
 
     // kodein
-    implementation kodeinJvm
+    implementation kodein
     implementation kodeinAndroid
+
+    implementation project(":common-contract")
+    implementation project(":common-core")
+    implementation project(":network-contract")
+    implementation project(":network-core")
+    implementation project(":database-contract")
+    implementation project(":database-core")
+    implementation project(":data-contract")
+    implementation project(":data-core")
+    implementation project(":splash-contract")
+    implementation project(":splash-core")
+    implementation project(":home-contract")
+    implementation project(":home-core")
+    implementation project(":news-contract")
+    implementation project(":news-core")
+    implementation project(":summary-contract")
+    implementation project(":summary-core")
 
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+
+    jvm_test_array.each {
+        testImplementation it
+    }
 }

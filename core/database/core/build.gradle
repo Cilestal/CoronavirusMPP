@@ -1,0 +1,17 @@
+ext {
+    commonMain_dependencies = {
+        implementation project(':common-core')
+        implementation project(":database-contract")
+    }
+
+    androidMain_dependencies = {
+        implementation sqldelight_android_driver
+    }
+
+    iOSMain_dependencies = {
+        implementation sqldelight_native_driver
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
+

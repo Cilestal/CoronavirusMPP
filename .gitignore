@@ -73,9 +73,3 @@ build/
 .idea/encodings.xml
 .idea/modules.xml
 .idea/runConfigurations.xml
-
-# Xcode user specific files
-*.xcuserstate
-platform/ios/MainApp/Pods/
-platform/ios/MainApp/Podfile.lock
-*.xcbkptlist

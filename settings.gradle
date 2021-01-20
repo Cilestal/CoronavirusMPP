@@ -1,21 +1,64 @@
 rootProject.name = 'MPPSample'
 enableFeaturePreview('GRADLE_METADATA')
 
+//region core
+
 // common
-include 'common-contract', 'common-core', 'common-test'
-project(':common-contract').projectDir = file('components/common/contract')
-project(':common-core').projectDir = file('components/common/core')
-project(':common-test').projectDir = file('components/common/test')
+include 'common-contract', 'common-core'
+project(':common-contract').projectDir = file('core/common/contract')
+project(':common-core').projectDir = file('core/common/core')
+
+// livedata
+include 'livedata'
+project(':livedata').projectDir = file('core/livedata/')
 
 // network
 include 'network-contract', 'network-core'
-project(':network-contract').projectDir = file('components/network/contract')
-project(':network-core').projectDir = file('components/network/core')
+project(':network-contract').projectDir = file('core/network/contract')
+project(':network-core').projectDir = file('core/network/core')
 
 // database
 include 'database-contract', 'database-core'
-project(':database-contract').projectDir = file('components/database/contract')
-project(':database-core').projectDir = file('components/database/core')
+project(':database-contract').projectDir = file('core/database/contract')
+project(':database-core').projectDir = file('core/database/core')
 
+// data
+include 'data-contract', 'data-core'
+project(':data-contract').projectDir = file('core/data/contract')
+project(':data-core').projectDir = file('core/data/core')
+
+//endregion
+
+//region features
+
+// splash
+include 'splash-contract', 'splash-core'
+project(':splash-contract').projectDir = file('features/splash/contract')
+project(':splash-core').projectDir = file('features/splash/core')
+
+// summary
+include 'summary-contract', 'summary-core'
+project(':summary-contract').projectDir = file('features/summary/contract')
+project(':summary-core').projectDir = file('features/summary/core')
+
+// news
+include 'news-contract', 'news-core'
+project(':news-contract').projectDir = file('features/news/contract')
+project(':news-core').projectDir = file('features/news/core')
+
+// home
+include 'home-contract', 'home-core'
+project(':home-contract').projectDir = file('features/home/contract')
+project(':home-core').projectDir = file('features/home/core')
+
+//endregion
+
+//region App
+// app
 include 'android_app'
 project(':android_app').projectDir = file('platform/android/app')
+
+include 'ios_app'
+project(':ios_app').projectDir = file('platform/ios/app')
+
+//endregion
