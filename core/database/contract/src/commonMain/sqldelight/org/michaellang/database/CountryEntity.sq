@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS countryEntity;
+CREATE TABLE countryEntity (
+  country TEXT PRIMARY KEY NOT NULL,
+  iso2 TEXT NOT NULL
+);
+
+insert:
+INSERT OR REPLACE INTO countryEntity(country, iso2)
+VALUES ?;
+
+getCountry:
+SELECT * FROM countryEntity
+WHERE iso2 = ?;
+
+getCountryList:
+SELECT * FROM countryEntity;
+
+clear:
+DELETE FROM countryEntity;

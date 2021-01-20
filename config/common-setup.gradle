@@ -1,8 +1,8 @@
 apply plugin: 'kotlin-multiplatform'
 
 def getClosureByNameOrEmpty(String name) {
-    if (this.properties.containsKey(name)) {
-        return this.properties.find { it.key == name }.value
+    if (project.properties.containsKey(name)) {
+        return project.properties.find { it.key == name }.value
     } else {
         return {}
     }
@@ -10,53 +10,43 @@ def getClosureByNameOrEmpty(String name) {
 
 kotlin {
     targets {
-        jvm()
-
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")     \
-                                  ? presets.iosArm64 : presets.iosX64
-
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")        \
+                                     ? presets.iosArm64 : presets.iosX64
         fromPreset(iOSTarget, 'iOS')
     }
 
     sourceSets {
         commonMain {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                implementation kotlin_stdlib_common
                 implementation kotlinx_serialization
             }
-            dependencies(getClosureByNameOrEmpty("commonDependencyGroup"))
         }
+
+//        commonTest {
+//            dependsOn commonMain
+//            dependencies {
+//                test_common.each {
+//                    implementation it
+//                }
+//            }
+//        }
 
         iOSMain {
             dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("iOSDependencyGroup"))
+        }
 
+        iOSTest {
+            dependsOn iOSMain
             dependencies {
-                implementation kotlinx_serialization_native
+                test_common.each {
+                    implementation it
+                }
             }
         }
 
-        jvmMain {
-            dependsOn commonMain
-            dependencies(getClosureByNameOrEmpty("jvmDependencyGroup"))
-
-            dependencies {
-                implementation kotlinx_serialization_jvm
-            }
-        }
-
-        jvmTest {
-            dependsOn jvmMain
-            dependencies(getClosureByNameOrEmpty("jvmTestDependencyGroup"))
-
-            project.jvmTest {
-                useJUnitPlatform()
-            }
-
-            dependencies {
-                api project(":common-test")
-                api kotlin_reflect
-            }
+        all {
+            it.dependencies(getClosureByNameOrEmpty("${it.name}_dependencies"))
         }
     }
 }
@@ -65,5 +55,4 @@ afterEvaluate {
     if (!project.hasProperty('test')) {
         task test()
     }
-    tasks.test.dependsOn jvmTest
 }

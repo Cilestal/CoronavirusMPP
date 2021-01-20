@@ -1,0 +1,113 @@
+// .Dot docs - https://graphs.grevian.org/reference
+
+task projectDependencyGraph {
+    doLast {
+        def dot = new File(rootProject.buildDir, 'reports/dependency-graph/project.dot')
+        dot.parentFile.mkdirs()
+        dot.delete()
+
+        def apricotColor = "#ffd2b3"
+        def greyColor = "#bbbbbb"
+        def greenColor = "#64dd17" //"#baffc9"
+        def greenLine = "#387002" //"#baffc9"
+        def roseColor = "#ff9496" //"#ffb3ba"
+        def roseLine = "#a00037"
+        def blueColor = "#62efff"
+        def blueLine = "#0071bc"
+
+        dot << 'digraph {\n'
+        dot << "  graph [label=\"${rootProject.name}\\n \",labelloc=t,fontsize=30,ranksep=1.4];\n"
+        dot << '  node [style=filled, fillcolor="' + greyColor + '"];\n'
+        dot << '  rankdir=TB;\n'
+
+        def rootProjects = []
+        def queue = [rootProject]
+        while (!queue.isEmpty()) {
+            def project = queue.remove(0)
+            rootProjects.add(project)
+            queue.addAll(project.childProjects.values())
+        }
+
+        def projects = new LinkedHashSet<Project>()
+        def dependencies = new LinkedHashMap<Tuple2<Project, Project>, List<String>>()
+
+        queue = [rootProject]
+        while (!queue.isEmpty()) {
+            def project = queue.remove(0)
+            queue.addAll(project.childProjects.values())
+
+            project.configurations.all { config ->
+                config.dependencies
+                        .withType(ProjectDependency)
+                        .collect { it.dependencyProject }
+                        .each { dependency ->
+                            projects.add(project)
+                            projects.add(dependency)
+                            rootProjects.remove(dependency)
+
+                            def graphKey = new Tuple2<Project, Project>(project, dependency)
+                            def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
+
+                            if (graphKey.first.name.endsWith('-android')) {
+                                traits.add('color="' + greenLine + '"')
+                            } else if (graphKey.first.name.endsWith('-contract')) {
+                                traits.add('color="' + roseLine + '"')
+                            } else if (graphKey.first.name.endsWith('-core')) {
+                                traits.add('color="' + blueLine + '"')
+                            }
+
+                            //traits.add('penwidth=0.5')
+                        }
+            }
+        }
+
+        projects = projects.sort { it.path }
+
+        dot << '\n  # Projects\n\n'
+        for (project in projects) {
+            def traits = []
+
+            if (rootProjects.contains(project)) {
+                traits.add('shape=box')
+            }
+
+            if (project.name.endsWith('-contract')) {
+                traits.add('fillcolor="' + roseColor + '"')
+            } else if (project.name.endsWith('-core')) {
+                traits.add('fillcolor="' + greenColor + '"')
+            } else {
+                traits.add('fillcolor="#eeeeee"')
+            }
+
+            dot << "  \"${project.path}\" [${traits.join(", ")}];\n"
+        }
+
+        dot << '\n  {rank = same;'
+        for (project in projects) {
+            if (rootProjects.contains(project)) {
+                dot << " \"${project.path}\";"
+            }
+        }
+        dot << '}\n'
+
+        dot << '\n  # Dependencies\n\n'
+        dependencies.forEach { key, traits ->
+            if (!key.first.name.contains("main_android_app"))
+                dot << "  \"${key.first.path}\" -> \"${key.second.path}\""
+            if (!traits.isEmpty()) {
+                dot << " [${traits.join(", ")}]"
+            }
+            dot << '\n'
+        }
+
+        dot << '}\n'
+
+        def p = 'dot -Tpng -O project.dot'.execute([], dot.parentFile)
+        p.waitFor()
+        if (p.exitValue() != 0) {
+            throw new RuntimeException(p.errorStream.text)
+        }
+
+        println("Project module dependency graph created at ${dot.absolutePath}.png")
+    }
+}

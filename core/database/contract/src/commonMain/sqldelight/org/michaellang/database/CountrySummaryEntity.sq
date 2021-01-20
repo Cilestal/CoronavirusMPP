@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS countrySummaryEntity;
+CREATE TABLE countrySummaryEntity (
+  country TEXT NOT NULL,
+  countryCode TEXT NOT NULL,
+  newConfirmed INTEGER NOT NULL,
+  totalConfirmed INTEGER NOT NULL,
+  newDeaths INTEGER NOT NULL,
+  totalDeaths INTEGER NOT NULL,
+  newRecovered INTEGER NOT NULL,
+  totalRecovered INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  PRIMARY KEY (date, country)
+);
+
+insert:
+INSERT OR REPLACE INTO countrySummaryEntity(
+  country,
+  countryCode,
+  newConfirmed,
+  totalConfirmed,
+  newDeaths,
+  totalDeaths,
+  newRecovered,
+  totalRecovered,
+  date
+)
+VALUES ?;
+
+getSummary:
+SELECT * FROM countrySummaryEntity
+WHERE country = :country AND date = :date;
+
+countrySummaries:
+SELECT * FROM countrySummaryEntity
+WHERE date = :date;
+
+getSummaryByCountry:
+SELECT * FROM countrySummaryEntity
+WHERE country = :country;
+
+clear:
+DELETE FROM countrySummaryEntity;

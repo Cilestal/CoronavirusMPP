@@ -1,32 +1,60 @@
 ext {
 
-    kotlin = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    kotlin_stdlib_common = dependencies.create("org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version")
     kotlin_reflect = dependencies.create("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
 
     // android x
     appcompat = dependencies.create("androidx.appcompat:appcompat:$appcompat_version")
+    recycl_view = dependencies.create("androidx.recyclerview:recyclerview:$recycler_view_version")
     coreCtx = dependencies.create("androidx.core:core-ktx:$core_ktx_version")
     constraintlayout = dependencies.create("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    multidex = dependencies.create("androidx.multidex:multidex:$multidex_version")
+    lifecycle = dependencies.create("androidx.lifecycle:lifecycle-extensions:$lifecycle_version")
+    coroutines = dependencies.create("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version-native-mt")
+
+    navigation = [
+            dependencies.create("androidx.navigation:navigation-fragment-ktx:$nav_version"),
+            dependencies.create("androidx.navigation:navigation-ui-ktx:$nav_version"),
+            dependencies.create("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    ]
 
     // glide
     glide = dependencies.create("com.github.bumptech.glide:glide:$glide_version")
     glideCompiler = dependencies.create("com.github.bumptech.glide:compiler:$glide_version")
 
     // kodein
-    kodeinJvm = dependencies.create("org.kodein.di:kodein-di-generic-jvm:$kodein_version")
+    kodein = dependencies.create("org.kodein.di:kodein-di:$kodein_version")
     kodeinAndroid = dependencies.create("org.kodein.di:kodein-di-framework-android-x:$kodein_version")
 
     // kotlinx serialization
-    kotlinx_serialization = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$kotlin_serialization_version") {
+    kotlinx_serialization = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version") {
         apply plugin: 'kotlinx-serialization'
     }
 
-    kotlinx_serialization_jvm = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlin_serialization_version") {
-        apply plugin: 'kotlinx-serialization'
+    // sqldelight
+    sqldelight_android_driver = dependencies.create("com.squareup.sqldelight:android-driver:$sqldelight_version")
+    sqldelight_native_driver = dependencies.create("com.squareup.sqldelight:native-driver:$sqldelight_version")
+
+    // okhttp
+    okhttp = dependencies.create("com.squareup.okhttp3:okhttp:$okhttp_version")
+
+    // moko
+    moko_resources = dependencies.create("dev.icerock.moko:resources:$moko_resources_generator_version")
+
+    // test
+    mockk_jvm = dependencies.create("io.mockk:mockk:$mockk_version") {
+        exclude group: 'org.slf4j'
     }
 
-    kotlinx_serialization_native = dependencies.create("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$kotlin_serialization_version") {
-        apply plugin: 'kotlinx-serialization'
-    }
+    test_common = [
+            dependencies.create("org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"),
+            dependencies.create("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version"),
+    ]
 
+    jvm_test_array = [
+            dependencies.create("org.junit.jupiter:junit-jupiter-api:$junit_version"),
+            dependencies.create("org.junit.jupiter:junit-jupiter-params:$junit_version"),
+            dependencies.create("org.junit.jupiter:junit-jupiter-engine:$junit_version"),
+            mockk_jvm
+    ]
 }

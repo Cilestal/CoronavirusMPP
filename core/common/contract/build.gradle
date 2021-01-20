@@ -1,0 +1,8 @@
+ext {
+    commonMain_dependencies = {
+        api project(":livedata")
+        api moko_resources
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")

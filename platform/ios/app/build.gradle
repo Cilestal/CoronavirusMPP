@@ -1,0 +1,70 @@
+apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
+apply plugin: "com.squareup.sqldelight"
+def frameworkName = 'KotlinShared'
+
+kotlin {
+    final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")     \
+                                  ? presets.iosArm64 : presets.iosX64
+
+    targets {
+        fromPreset(iOSTarget, 'iOS') {
+
+            binaries {
+                framework(frameworkName) {
+                    freeCompilerArgs += "-Xobjc-generics"
+                    export(project(":livedata"))
+                    export(project(":common-contract"))
+                    export(project(":splash-contract"))
+                    export(project(":home-contract"))
+                    export(project(":summary-contract"))
+                    export(project(":news-contract"))
+                }
+            }
+        }
+    }
+
+    sourceSets {
+        iOSMain {
+            dependsOn commonMain
+            dependencies {
+                implementation kodein
+
+                api project(':livedata')
+                api project(':common-contract')
+                api project(':splash-contract')
+                api project(':home-contract')
+                api project(':summary-contract')
+                api project(':news-contract')
+
+                implementation project(':common-core')
+                implementation project(':splash-core')
+                implementation project(':data-core')
+                implementation project(':network-core')
+                implementation project(':database-core')
+                implementation project(':home-core')
+                implementation project(':summary-core')
+                implementation project(':news-core')
+            }
+        }
+    }
+}
+
+
+task packForXCode(type: Sync) {
+    final File frameworkDir = new File(rootProject.buildDir, "xcode-frameworks")
+    final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
+    final def framework = kotlin.targets.iOS.binaries.getFramework(frameworkName, mode)
+
+    inputs.property "mode", mode
+    dependsOn framework.linkTask
+
+    from { framework.outputFile.parentFile }
+    into frameworkDir
+
+    doLast {
+        new File(frameworkDir, 'gradlew').with {
+            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
+            setExecutable(true)
+        }
+    }
+}

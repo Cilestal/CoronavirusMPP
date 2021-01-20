@@ -1,7 +1,0 @@
-ext {
-    commonDependencyGroup = {
-        implementation project(":common-contract")
-    }
-}
-
-apply from: rootProject.file("${rootDir}/config/common-setup.gradle")

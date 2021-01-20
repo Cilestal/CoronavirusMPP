@@ -1,0 +1,8 @@
+ext {
+    commonMain_dependencies = {
+        implementation project(":common-contract")
+        implementation project(":data-contract")
+    }
+}
+
+apply from: rootProject.file("${rootDir}/config/mpp-setup.gradle")
