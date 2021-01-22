@@ -15,7 +15,7 @@ import org.michaellang.home.databinding.ActivityHomeBinding
 import org.michaellang.home.di.HomeAndroidModule
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-    override val activityModule: DI.Module = HomeAndroidModule(this).module
+    override val module: DI.Module = HomeAndroidModule(this).module
 
     private val navItems by instance<@NavigationRes List<Int>>(TAG_HOME_NAV_GRAPH)
 

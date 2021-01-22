@@ -1,7 +1,6 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'com.android.library'
 
-//todo merge with common-setup
 apply from: rootProject.file("${rootDir}/config/common-setup.gradle")
 apply from: rootProject.file("${rootDir}/config/android-setup.gradle")
 
@@ -39,7 +38,9 @@ kotlin {
         }
 
         androidTest {
-            dependsOn commonMain
+            kotlin.srcDirs += 'build/generated/moko/androidMain/'
+
+            dependsOn androidMain
             dependencies {
                 jvm_test_array.each {
                     implementation it

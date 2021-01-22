@@ -6,18 +6,17 @@ task projectDependencyGraph {
         dot.parentFile.mkdirs()
         dot.delete()
 
-        def apricotColor = "#ffd2b3"
-        def greyColor = "#bbbbbb"
-        def greenColor = "#64dd17" //"#baffc9"
-        def greenLine = "#387002" //"#baffc9"
-        def roseColor = "#ff9496" //"#ffb3ba"
-        def roseLine = "#a00037"
-        def blueColor = "#62efff"
-        def blueLine = "#0071bc"
+        def defaultColor = "#cfd8dc"
+        def coreColor = "#90caf9"
+        def coreLineColor = "#5d99c6"
+        def contractColor = "#a5d6a7"
+        def contractLineColor = "#75a478"
+        def appColor = "#ffccbc"
+        def appLineColor = "#c97b63"
 
         dot << 'digraph {\n'
-        dot << "  graph [label=\"${rootProject.name}\\n \",labelloc=t,fontsize=30,ranksep=1.4];\n"
-        dot << '  node [style=filled, fillcolor="' + greyColor + '"];\n'
+        dot << "  graph [labelloc=t,fontsize=30,ranksep=1];\n"
+        dot << '  node [style=filled, fillcolor="' + defaultColor + '"];\n'
         dot << '  rankdir=TB;\n'
 
         def rootProjects = []
@@ -41,6 +40,10 @@ task projectDependencyGraph {
                         .withType(ProjectDependency)
                         .collect { it.dependencyProject }
                         .each { dependency ->
+                            if(dependency == project || (project.name.endsWith("_app") && dependency.name.endsWith("-contract"))) {
+                                return
+                            }
+
                             projects.add(project)
                             projects.add(dependency)
                             rootProjects.remove(dependency)
@@ -48,12 +51,12 @@ task projectDependencyGraph {
                             def graphKey = new Tuple2<Project, Project>(project, dependency)
                             def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
 
-                            if (graphKey.first.name.endsWith('-android')) {
-                                traits.add('color="' + greenLine + '"')
+                            if(graphKey.first.name.endsWith('_app')) {
+                                traits.add('color="' + appLineColor + '"')
                             } else if (graphKey.first.name.endsWith('-contract')) {
-                                traits.add('color="' + roseLine + '"')
+                                traits.add('color="' + contractLineColor + '"')
                             } else if (graphKey.first.name.endsWith('-core')) {
-                                traits.add('color="' + blueLine + '"')
+                                traits.add('color="' + coreLineColor + '"')
                             }
 
                             //traits.add('penwidth=0.5')
@@ -71,10 +74,12 @@ task projectDependencyGraph {
                 traits.add('shape=box')
             }
 
-            if (project.name.endsWith('-contract')) {
-                traits.add('fillcolor="' + roseColor + '"')
+            if(project.name.endsWith("_app")) {
+                traits.add('fillcolor="' + appColor + '"')
+            } else if (project.name.endsWith('-contract')) {
+                traits.add('fillcolor="' + contractColor + '"')
             } else if (project.name.endsWith('-core')) {
-                traits.add('fillcolor="' + greenColor + '"')
+                traits.add('fillcolor="' + coreColor + '"')
             } else {
                 traits.add('fillcolor="#eeeeee"')
             }

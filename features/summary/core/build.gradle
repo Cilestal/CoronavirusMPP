@@ -6,7 +6,6 @@ ext {
     }
 
     androidMain_dependencies = {
-        implementation constraintlayout
         implementation glide
         implementation recycl_view
     }

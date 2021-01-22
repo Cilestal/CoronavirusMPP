@@ -23,15 +23,6 @@ kotlin {
             }
         }
 
-//        commonTest {
-//            dependsOn commonMain
-//            dependencies {
-//                test_common.each {
-//                    implementation it
-//                }
-//            }
-//        }
-
         iOSMain {
             dependsOn commonMain
         }

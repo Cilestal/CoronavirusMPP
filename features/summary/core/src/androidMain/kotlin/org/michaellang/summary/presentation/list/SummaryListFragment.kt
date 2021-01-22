@@ -23,7 +23,7 @@ import org.michaellang.summary.presentation.model.SummaryListSortModel
 
 class SummaryListFragment : BaseFragment<FragmentSummaryListBinding>(), MenuItem.OnActionExpandListener,
     SearchView.OnQueryTextListener {
-    override val fragmentModule = SummaryListAndroidModule(this).module
+    override val module = SummaryListAndroidModule(this).module
 
     private val viewModel by instance<SummaryListViewModel>()
     private val globalSummaryAdapter by instance<GlobalSummaryAdapter>()

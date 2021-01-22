@@ -9,7 +9,9 @@ import kotlin.native.concurrent.ThreadLocal
 object Injector : DIAware {
     override lateinit var di: DI
 
-    fun setup() {
+    fun setup(
+        // platform dependent variables
+    ) {
         if (!this::di.isInitialized) {
             di = DI.lazy {
                 import(IosAppModule())
