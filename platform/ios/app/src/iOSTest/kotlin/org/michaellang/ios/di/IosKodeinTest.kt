@@ -7,15 +7,14 @@ import org.michaellang.common.provider.ResourceProvider
 import org.michaellang.data.repository.CovidRepository
 import org.michaellang.database.AppDatabase
 import org.michaellang.home.HomeNavigator
-import org.michaellang.ios.navigation.NavigationProvider
 import org.michaellang.network.NetworkService
 import kotlin.test.Test
 
 class IosKodeinTest {
 
-    private val sut: IosAppComponent = IosAppComponent(
-        navigationProvider = NavigationProviderMock()
-    )
+    private val sut = Injector.apply {
+        setup()
+    }
 
     @Test
     fun testNetworkService() {
@@ -52,11 +51,5 @@ class IosKodeinTest {
         sut.test<HomeNavigator>()
 
         throw Exception()
-    }
-}
-
-class NavigationProviderMock : NavigationProvider {
-    override fun createHomeNavigator(): HomeNavigator = object : HomeNavigator {
-        override fun goToHomeScreen() {}
     }
 }

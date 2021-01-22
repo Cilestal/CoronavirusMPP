@@ -14,13 +14,14 @@ import org.kodein.di.DIAware
 import org.kodein.di.DITrigger
 import org.kodein.di.android.closestDI
 import org.michaellang.common.di.CoroutineScopeCoreModule
+import org.michaellang.common.di.KodeinModuleHolder
 
-abstract class BaseFragment<B : ViewDataBinding> : Fragment(), DIAware {
+abstract class BaseFragment<B : ViewDataBinding> : Fragment(), DIAware, KodeinModuleHolder {
     private lateinit var _parentDI: DI
     override val di: DI = DI.lazy {
         extend(_parentDI)
         import(CoroutineScopeCoreModule().module)
-        import(fragmentModule)
+        import(module)
     }
     protected lateinit var binding: B
 
@@ -40,6 +41,4 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment(), DIAware {
 
     @LayoutRes
     abstract fun layoutRes(): Int
-
-    abstract val fragmentModule: DI.Module
 }

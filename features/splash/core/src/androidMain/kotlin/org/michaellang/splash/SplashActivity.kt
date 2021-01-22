@@ -9,7 +9,7 @@ import org.michaellang.common.extensions.onComplete
 import org.michaellang.splash.databinding.ActivitySplashBinding
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
-    override val activityModule = SplashAndroidModule(this).module
+    override val module = SplashAndroidModule(this).module
     private val viewModel by instance<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

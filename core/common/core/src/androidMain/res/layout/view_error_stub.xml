@@ -44,6 +44,6 @@
         android:text="@string/retry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errorStateText" />
+        app:layout_constraintTop_toBottomOf="@id/errorStateText" />
 
 </LinearLayout>
